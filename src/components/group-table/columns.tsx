@@ -1,5 +1,11 @@
 "use client";
 
+import {
+  CheckCircledIcon,
+  CircleIcon,
+  CrossCircledIcon,
+} from "@radix-ui/react-icons";
+
 import { ColumnDef } from "@tanstack/react-table";
 import { GroupSelect } from "@/server/db/schema";
 import { SortButton } from "./sort-button";
@@ -25,6 +31,19 @@ export const columns: ColumnDef<Group>[] = [
   {
     accessorKey: "active",
     header: ({ column }) => <SortButton column={column}>Active</SortButton>,
+    cell: (cell) => {
+      const value = cell.row.original.active;
+      // use green check or red x instead of active value. making sure it is horizontally centered in the column
+      return (
+        <div className="flex justify-center">
+          {value ? (
+            <CheckCircledIcon className=" h-6 w-6 text-green-500" />
+          ) : (
+            <CrossCircledIcon className="h-6 w-6 text-red-500" />
+          )}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "createdAt",
