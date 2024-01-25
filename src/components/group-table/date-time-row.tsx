@@ -1,6 +1,9 @@
 "use client";
 import { formatDateTime } from "../../lib/formatDateTime";
-import { RowDateTimeProps } from "./columns";
+
+export type RowDateTimeProps = {
+  dateValue: Date | null;
+};
 
 export function DateTimeRow({ dateValue: rowValue }: RowDateTimeProps) {
   if (!rowValue) {
