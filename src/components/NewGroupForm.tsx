@@ -1,7 +1,5 @@
 "use client";
 
-import groupsTable from "@/server/db/schema";
-import { createInsertSchema } from "drizzle-zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -17,16 +15,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "./ui/checkbox";
+import { zodInsertGroupSchema } from "@/server/db/schema";
 
-const zodInsertGroupSchema = createInsertSchema(groupsTable, {
-  // We can add additional validation here.
-  // For example, we can check that the username is unique.
-  name: z
-    .string()
-    .min(4, "Group name must be at least 4 characters long")
-    .max(16, "Group name must be no more then 16 characters long"),
-  active: z.boolean().default(false),
-});
 
 export default function NewGroupForm() {
   const form = useForm<z.infer<typeof zodInsertGroupSchema>>({
