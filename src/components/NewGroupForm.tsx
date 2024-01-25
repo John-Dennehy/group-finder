@@ -94,6 +94,7 @@ export default function NewGroupForm() {
             </FormItem>
           )}
         />
+
         <Button disabled={action.status === "executing"} type="submit">
           {action.status === "executing" ? "Saving..." : "Save"}
         </Button>

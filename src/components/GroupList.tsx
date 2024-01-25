@@ -1,13 +1,8 @@
+import groupsTable, { GroupSelect } from "@/server/db/schema";
 import { Card, CardContent } from "./ui/card";
 
-export type Group = {
-  id: number;
-  name: string;
-  active: boolean;
-};
-
 type GroupListProps = {
-  groups: Group[];
+  groups: GroupSelect[];
 };
 
 export function GroupList({ groups }: GroupListProps) {

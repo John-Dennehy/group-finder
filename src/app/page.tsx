@@ -1,6 +1,6 @@
 "use server";
 
-import GroupList, { Group } from "@/components/GroupList";
+import GroupList from "@/components/GroupList";
 import NewGroupForm from "@/components/NewGroupForm";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { db } from "@/server/db";
@@ -12,8 +12,6 @@ export const selectAllGroups = async () => {
 };
 
 export default async function Home() {
-  // TODO: fetch groups from server
-
   const groups = await selectAllGroups();
 
   return (
