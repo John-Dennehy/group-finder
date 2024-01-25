@@ -7,7 +7,7 @@ import {
   text,
   timestamp,
 } from "drizzle-orm/mysql-core";
-import { createInsertSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 // add prefix for multi-project schema in single Planetscale database
@@ -29,7 +29,7 @@ export const groupsTable = prefixedMySqlTable("groups", {
   deletedAt: timestamp("deleted_at"),
 });
 
-// zod schema for groups table
+// zod insert schema for groups table
 export const zodInsertGroupSchema = createInsertSchema(groupsTable, {
   // We can add additional validation here.
   // For example, we can check that the username is unique.
@@ -38,6 +38,14 @@ export const zodInsertGroupSchema = createInsertSchema(groupsTable, {
     .min(4, "Group name must be at least 4 characters long")
     .max(16, "Group name must be no more then 16 characters long"),
   description: z.string().describe("blah").max(1024).optional(),
+});
+
+// zod update schema for groups table
+export const zodUpdateGroupSchema = zodInsertGroupSchema.partial();
+
+// zod select schema for groups table
+export const zodSelectGroupSchema = createSelectSchema(groupsTable, {
+  // We can add additional validation here.
 });
 
 export type GroupSelect = typeof groupsTable.$inferSelect;
