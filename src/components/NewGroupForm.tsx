@@ -27,6 +27,7 @@ export default function NewGroupForm() {
     defaultValues: {
       name: "",
       active: false,
+      description: "",
     },
   });
 
@@ -85,7 +86,14 @@ export default function NewGroupForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="Group description..." {...field} />
+                <Textarea
+                  placeholder="Group description..."
+                  {...field}
+                  onChange={field.onChange}
+                  ref={field.ref}
+                  name={field.name}
+                  value={field.value} // TODO: fix this type error
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
