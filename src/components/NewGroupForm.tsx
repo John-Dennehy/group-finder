@@ -18,8 +18,13 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "./ui/checkbox";
 import { zodInsertGroupSchema } from "@/server/db/schema";
 import { newGroupAction } from "@/server/actions/new-group-action";
+import { toast } from "sonner";
+import { useState } from "react";
 
 export default function NewGroupForm() {
+  const [toastId, setToastId] = useState<string | number | undefined>(
+    undefined
+  );
   const form = useForm<z.infer<typeof zodInsertGroupSchema>>({
     resolver: zodResolver(zodInsertGroupSchema),
     defaultValues: {
@@ -29,7 +34,14 @@ export default function NewGroupForm() {
   });
 
   const action = useAction(newGroupAction, {
+    onExecute: ({ name }) => {
+      form.clearErrors();
+      // ... show toast on client
+
+      setToastId(toast(`Saving ${name}...`));
+    },
     onSuccess: () => {
+      toast.success("Group saved!", { id: toastId });
       form.reset();
     },
   });
