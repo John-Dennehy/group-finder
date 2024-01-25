@@ -6,11 +6,11 @@ dotenv.config({
 });
 
 export default {
-  schema: "src/server/data/schema/index.ts",
-  out: "src/server/data/migrations",
+  schema: "src/server/db/schema.ts",
+  out: "src/server/db/migrations",
   driver: "mysql2",
   dbCredentials: {
     uri: process.env.DATABASE_URL!,
   },
-  tablesFilter: ["groupfinder_*"],
-} satisfies Config
+  tablesFilter: ["testing_*"],
+} satisfies Config;
