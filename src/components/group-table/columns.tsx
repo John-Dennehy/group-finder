@@ -1,7 +1,14 @@
 "use client";
 
-import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
+import {
+  CheckCircledIcon,
+  CrossCircledIcon,
+  TrashIcon,
+  EyeOpenIcon,
+  Pencil1Icon,
+} from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
+import { MoreHorizontal } from "lucide-react";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { GroupSelect } from "@/server/db/schema";
@@ -9,7 +16,14 @@ import { DateTimeRow } from "./date-time-row";
 import Link from "next/link";
 import { ColumnHeader } from "./column-header";
 
-
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const columns: ColumnDef<GroupSelect>[] = [
   {
@@ -81,6 +95,51 @@ export const columns: ColumnDef<GroupSelect>[] = [
         ? new Date(cell.row.original.updatedAt)
         : null;
       return <DateTimeRow dateValue={dateValue} />;
+    },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      const group = row.original;
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem>
+              <Button asChild variant="outline" className="w-full">
+                <Link href={`/group/${group.id}`}>
+                  <EyeOpenIcon className="mr-2 h-4 w-4" /> View
+                </Link>
+              </Button>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Button asChild variant="outline" className="w-full">
+                <Link href={`/group/${group.id}/edit`}>
+                  <Pencil1Icon className="mr-2 h-4 w-4" /> Edit
+                </Link>
+              </Button>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Button
+                variant={"destructive"}
+                className="w-full"
+                // TODO: add delete functionality
+                onClick={() => alert(`TODO: Deleted group ${group.name}`)}
+              >
+                <TrashIcon className="mr-2 h-4 w-4" /> Delete
+              </Button>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
     },
   },
 ];
