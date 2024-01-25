@@ -1,8 +1,8 @@
 "use server";
 
-import { DataTable, GroupTable } from "@/components/group-table";
-import NewGroupForm from "@/components/NewGroupForm";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { DrawerDialog } from "@/components/drawer-dialog";
+import { GroupTable } from "@/components/group-table";
+import NewGroupForm from "@/components/new-group-form";
 import { db } from "@/server/db";
 import groupsTable from "@/server/db/schema";
 
@@ -18,14 +18,13 @@ export default async function AdminPage() {
     <main className="container mx-auto">
       <div className="flex flex-col gap-4">
         <h1>Admin Page</h1>
-        <Card>
-          <CardHeader>
-            <h2>Create New Group</h2>
-          </CardHeader>
-          <CardContent>
-            <NewGroupForm />
-          </CardContent>
-        </Card>
+
+        <DrawerDialog
+          title="Create New Group"
+          description="Create a new group"
+          form={<NewGroupForm />}
+        />
+
         <hr />
         <GroupTable />
       </div>
