@@ -22,9 +22,6 @@ import { toast } from "sonner";
 import { useState } from "react";
 
 export default function NewGroupForm() {
-  const [toastId, setToastId] = useState<string | number | undefined>(
-    undefined
-  );
   const form = useForm<z.infer<typeof zodInsertGroupSchema>>({
     resolver: zodResolver(zodInsertGroupSchema),
     defaultValues: {
@@ -34,15 +31,27 @@ export default function NewGroupForm() {
   });
 
   const action = useAction(newGroupAction, {
-    onExecute: ({ name }) => {
-      form.clearErrors();
+    onExecute: (input) => {
       // ... show toast on client
-
-      setToastId(toast(`Saving ${name}...`));
     },
-    onSuccess: () => {
-      toast.success("Group saved!", { id: toastId });
+    onSuccess: (data, input, reset) => {
+      toast.success(`Success: ${input.name} saved`);
       form.reset();
+    },
+    onError: (error, input, reset) => {
+      if (error.fetchError)
+        toast.error(
+          `Fetch Error: ${error.fetchError}. Failed to create ${input.name}`
+        );
+      if (error.serverError) {
+        console.error(`${error.serverError}`);
+        toast.error(`Server Error: Failed to create ${input.name}`);
+      }
+      if (error.validationErrors)
+        toast.error(`Validation errors: ${error.validationErrors}`);
+    },
+    onSettled: (result, input, reset) => {
+      // reset();
     },
   });
 
