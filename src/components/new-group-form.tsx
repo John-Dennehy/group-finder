@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "./ui/checkbox";
 import { zodInsertGroupSchema } from "@/server/db/schema";
 import { newGroupAction } from "@/server/actions/new-group-action";
 import { toast } from "sonner";
