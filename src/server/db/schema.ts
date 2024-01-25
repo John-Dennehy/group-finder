@@ -4,7 +4,6 @@ import {
   boolean,
   varchar,
   mysqlTableCreator,
-  serial,
   text,
   timestamp,
 } from "drizzle-orm/mysql-core";
@@ -38,6 +37,7 @@ export const zodInsertGroupSchema = createInsertSchema(groupsTable, {
     .string()
     .min(4, "Group name must be at least 4 characters long")
     .max(16, "Group name must be no more then 16 characters long"),
+  description: z.string().describe("blah").max(1024).optional(),
 });
 
 export type GroupSelect = typeof groupsTable.$inferSelect;
