@@ -1,9 +1,20 @@
+"use server";
+
 import GroupList, { Group } from "@/components/GroupList";
 import NewGroupForm from "@/components/NewGroupForm";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { db } from "@/server/db";
+import groupsTable from "@/server/db/schema";
 
-export default function Home() {
-  const groups: Group[] = [];
+export const selectAllGroups = async () => {
+  const groups = await db.select().from(groupsTable);
+  return groups;
+};
+
+export default async function Home() {
+  // TODO: fetch groups from server
+
+  const groups = await selectAllGroups();
 
   return (
     <main className="container mx-auto">
