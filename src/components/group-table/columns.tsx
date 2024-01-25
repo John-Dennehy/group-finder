@@ -1,10 +1,9 @@
 "use client";
 
-import { ColumnDef, Row, Cell } from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 import { GroupSelect } from "@/server/db/schema";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-import { Button } from "../ui/button";
 import { SortButton } from "./SortButton";
+import { DateTimeRow } from "./DateTimeRow";
 
 export type Group = GroupSelect;
 
@@ -61,21 +60,6 @@ export const columns: ColumnDef<Group>[] = [
   },
 ];
 
-type RowDateTimeProps = {
+export type RowDateTimeProps = {
   dateValue: Date | null;
 };
-
-export function DateTimeRow({ dateValue: rowValue }: RowDateTimeProps) {
-  if (!rowValue) {
-    return <div className="font-medium text-center">-</div>;
-  }
-  const formattedDate = formatDateTime(rowValue);
-  return <div className="font-medium text-left">{formattedDate}</div>;
-}
-
-export function formatDateTime(date: Date) {
-  return new Intl.DateTimeFormat(["en-GB", "en-US"], {
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(date);
-}
