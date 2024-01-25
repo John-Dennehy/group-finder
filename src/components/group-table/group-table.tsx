@@ -13,5 +13,6 @@ async function getData(): Promise<GroupSelect[]> {
 export default async function DemoPage() {
   const data = await getData();
 
+
   return <DataTable columns={columns} data={data} />;
 }

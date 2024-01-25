@@ -9,9 +9,16 @@ import { DateTimeRow } from "./date-time-row";
 import Link from "next/link";
 import { ColumnHeader } from "./column-header";
 
+
+
 export const columns: ColumnDef<GroupSelect>[] = [
   {
+    accessorKey: "id",
+    header: ({ column }) => <ColumnHeader column={column} />,
+  },
+  {
     accessorKey: "name",
+    enableHiding: false,
     header: ({ column }) => <ColumnHeader column={column} />,
     cell: (props) => {
       const groupId = props.row.original.id;
