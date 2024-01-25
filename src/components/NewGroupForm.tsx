@@ -22,12 +22,19 @@ import { newGroupAction } from "@/server/actions/new-group-action";
 export default function NewGroupForm() {
   const form = useForm<z.infer<typeof zodInsertGroupSchema>>({
     resolver: zodResolver(zodInsertGroupSchema),
+    defaultValues: {
+      name: "",
+      active: false,
+    },
   });
 
-  const action = useAction(newGroupAction);
+  const action = useAction(newGroupAction, {
+    onSuccess: () => {
+      form.reset();
+    },
+  });
 
   function handleValidSubmit(data: z.infer<typeof zodInsertGroupSchema>) {
-    alert(`Valid: ${JSON.stringify(data)}`);
     action.execute(data);
   }
 
