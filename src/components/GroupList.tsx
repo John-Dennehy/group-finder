@@ -1,3 +1,5 @@
+import { Card, CardContent } from "./ui/card";
+
 export type Group = {
   id: number;
   name: string;
@@ -19,8 +21,14 @@ export function GroupList({ groups }: GroupListProps) {
         <ul className="flex flex-col gap-2">
           {groups.map((group) => (
             <li key={group.id}>
-              <h3>{group.name}</h3>
-              {group.active ? <span>✅</span> : <span>❌</span>}
+              <Card>
+                <CardContent>
+                  <h3 className="flex flex-row gap-2 ">
+                    {group.name}
+                    {group.active && <span>✅</span>}
+                  </h3>
+                </CardContent>
+              </Card>
             </li>
           ))}
         </ul>
