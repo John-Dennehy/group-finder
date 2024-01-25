@@ -8,11 +8,12 @@ import { GroupSelect } from "@/server/db/schema";
 import { SortButton } from "./sort-button";
 import { DateTimeRow } from "./date-time-row";
 import Link from "next/link";
+import { ColumnHeader } from "./column-header";
 
 export const columns: ColumnDef<GroupSelect>[] = [
   {
     accessorKey: "name",
-    header: ({ column }) => <SortButton column={column}>Name</SortButton>,
+    header: ({ column }) => <ColumnHeader column={column} />,
     cell: (props) => {
       const groupId = props.row.original.id;
       const groupName = props.row.original.name;
@@ -27,18 +28,16 @@ export const columns: ColumnDef<GroupSelect>[] = [
   },
   {
     accessorKey: "description",
-    header: ({ column }) => (
-      <SortButton column={column}>Description</SortButton>
-    ),
+    header: ({ column }) => <ColumnHeader column={column} />,
   },
   {
     accessorKey: "active",
-    header: ({ column }) => <SortButton column={column}>Active</SortButton>,
+    header: ({ column }) => <ColumnHeader column={column} />,
     cell: (cell) => {
       const value = cell.row.original.active;
       // use green check or red x instead of active value. making sure it is horizontally centered in the column
       return (
-        <div className="flex justify-center">
+        <div className="flex justify-left pl-4">
           {value ? (
             <CheckCircledIcon className=" h-6 w-6 text-green-500" />
           ) : (
@@ -50,7 +49,7 @@ export const columns: ColumnDef<GroupSelect>[] = [
   },
   {
     accessorKey: "createdAt",
-    header: ({ column }) => <SortButton column={column}>Created At</SortButton>,
+    header: ({ column }) => <ColumnHeader column={column} />,
     cell: (cell) => {
       const dateValue = cell.row.original.createdAt
         ? new Date(cell.row.original.createdAt)
@@ -60,9 +59,7 @@ export const columns: ColumnDef<GroupSelect>[] = [
   },
   {
     accessorKey: "verifiedAt",
-    header: ({ column }) => (
-      <SortButton column={column}>Verified At</SortButton>
-    ),
+    header: ({ column }) => <ColumnHeader column={column} />,
     cell: (cell) => {
       const dateValue = cell.row.original.verifiedAt
         ? new Date(cell.row.original.verifiedAt)
@@ -72,7 +69,7 @@ export const columns: ColumnDef<GroupSelect>[] = [
   },
   {
     accessorKey: "updatedAt",
-    header: ({ column }) => <SortButton column={column}>Updated At</SortButton>,
+    header: ({ column }) => <ColumnHeader column={column} />,
     cell: (cell) => {
       const dateValue = cell.row.original.updatedAt
         ? new Date(cell.row.original.updatedAt)
