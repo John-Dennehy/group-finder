@@ -19,7 +19,7 @@ import { Checkbox } from "./ui/checkbox";
 import { zodInsertGroupSchema } from "@/server/db/schema";
 import { newGroupAction } from "@/server/actions/new-group-action";
 import { toast } from "sonner";
-import { useState } from "react";
+import { Textarea } from "./ui/textarea";
 
 export default function NewGroupForm() {
   const form = useForm<z.infer<typeof zodInsertGroupSchema>>({
@@ -80,6 +80,19 @@ export default function NewGroupForm() {
         />
         <FormField
           control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Group description..." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {/* <FormField
+          control={form.control}
           name="active"
           render={({ field }) => (
             <FormItem>
@@ -93,7 +106,7 @@ export default function NewGroupForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
         <Button disabled={action.status === "executing"} type="submit">
           {action.status === "executing" ? "Saving..." : "Save"}
