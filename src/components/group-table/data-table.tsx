@@ -1,13 +1,14 @@
 "use client";
 
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
-  useReactTable,
-  SortingState,
+  getPaginationRowModel,
   getSortedRowModel,
-  VisibilityState,
+  useReactTable,
+  type ColumnDef,
+  type SortingState,
+  type VisibilityState,
 } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +26,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
+import { Pagination } from "./pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -45,6 +47,7 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
+    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     state: {
@@ -130,6 +133,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+      <Pagination table={table} />
     </>
   );
 }
