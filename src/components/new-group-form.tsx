@@ -99,24 +99,11 @@ export default function NewGroupForm() {
             </FormItem>
           )}
         />
-        {/* <FormField
-          control={form.control}
-          name="active"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Active</FormLabel>
-              <FormControl>
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        /> */}
-
-        <Button disabled={action.status === "executing"} type="submit">
+        <Button
+          className="w-full"
+          disabled={action.status === "executing"}
+          type="submit"
+        >
           {action.status === "executing" ? "Saving..." : "Save"}
         </Button>
       </form>
