@@ -1,10 +1,17 @@
-"use client";
+"use server";
 
-export default function GroupTable() {
-  return (
-    <>
-      <h2>Group Table</h2>
-      <p>Hello world</p>
-    </>
-  );
+import { db } from "@/server/db";
+import groupsTable from "@/server/db/schema";
+import { Group, columns } from "./columns";
+import { DataTable } from "./data-table";
+
+async function getData(): Promise<Group[]> {
+  const groups = await db.select().from(groupsTable);
+  return groups;
+}
+
+export default async function DemoPage() {
+  const data = await getData();
+
+  return <DataTable columns={columns} data={data} />;
 }
