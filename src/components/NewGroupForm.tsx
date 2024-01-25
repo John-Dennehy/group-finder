@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useAction } from "next-safe-action/hooks";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,15 +17,18 @@ import {
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "./ui/checkbox";
 import { zodInsertGroupSchema } from "@/server/db/schema";
-
+import { newGroupAction } from "@/server/actions/new-group-action";
 
 export default function NewGroupForm() {
   const form = useForm<z.infer<typeof zodInsertGroupSchema>>({
     resolver: zodResolver(zodInsertGroupSchema),
   });
 
+  const action = useAction(newGroupAction);
+
   function handleValidSubmit(data: z.infer<typeof zodInsertGroupSchema>) {
     alert(`Valid: ${JSON.stringify(data)}`);
+    action.execute(data);
   }
 
   return (
@@ -62,7 +66,9 @@ export default function NewGroupForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button disabled={action.status === "executing"} type="submit">
+          {action.status === "executing" ? "Saving..." : "Save"}
+        </Button>
       </form>
     </Form>
   );
