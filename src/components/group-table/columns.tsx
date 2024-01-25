@@ -11,11 +11,6 @@ import Link from "next/link";
 
 export const columns: ColumnDef<GroupSelect>[] = [
   {
-    accessorKey: "id",
-    header: "Id",
-  },
-
-  {
     accessorKey: "name",
     header: ({ column }) => <SortButton column={column}>Name</SortButton>,
     cell: (props) => {
