@@ -3,12 +3,13 @@ import { Column } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "../ui/button";
 import { ReactNode } from "react";
-import { Group } from "./columns";
+import { GroupSelect } from "@/server/db/schema";
 
 type SortButtonProps = {
-  column: Column<Group>;
+  column: Column<GroupSelect>;
   children: ReactNode;
 };
+
 export function SortButton({ column, children }: SortButtonProps) {
   return (
     <Button
