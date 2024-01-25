@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { GroupSelect } from "@/server/db/schema";
-import { SortButton } from "./sort-button";
 import { DateTimeRow } from "./date-time-row";
 import Link from "next/link";
 import { ColumnHeader } from "./column-header";
