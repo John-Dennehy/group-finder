@@ -1,6 +1,6 @@
 "use server";
 
-import GroupList from "@/components/GroupList";
+import { GroupTable } from "@/components/group-table";
 import NewGroupForm from "@/components/NewGroupForm";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { db } from "@/server/db";
@@ -27,7 +27,7 @@ export default async function AdminPage() {
           </CardContent>
         </Card>
         <hr />
-        <div>Table</div>
+        <GroupTable />
       </div>
     </main>
   );
