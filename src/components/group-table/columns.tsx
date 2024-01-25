@@ -2,8 +2,8 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { GroupSelect } from "@/server/db/schema";
-import { SortButton } from "./SortButton";
-import { DateTimeRow } from "./DateTimeRow";
+import { SortButton } from "./sort-button";
+import { DateTimeRow } from "./date-time-row";
 
 export type Group = GroupSelect;
 
