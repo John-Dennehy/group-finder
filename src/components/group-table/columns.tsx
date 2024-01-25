@@ -1,26 +1,34 @@
 "use client";
 
-import {
-  CheckCircledIcon,
-  CircleIcon,
-  CrossCircledIcon,
-} from "@radix-ui/react-icons";
+import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
+import { Button } from "@/components/ui/button";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { GroupSelect } from "@/server/db/schema";
 import { SortButton } from "./sort-button";
 import { DateTimeRow } from "./date-time-row";
+import Link from "next/link";
 
-export type Group = GroupSelect;
-
-export const columns: ColumnDef<Group>[] = [
+export const columns: ColumnDef<GroupSelect>[] = [
   {
     accessorKey: "id",
     header: "Id",
   },
+
   {
     accessorKey: "name",
     header: ({ column }) => <SortButton column={column}>Name</SortButton>,
+    cell: (props) => {
+      const groupId = props.row.original.id;
+      const groupName = props.row.original.name;
+      return (
+        <Button variant={"link"} asChild>
+          <Link className="flex items-center" href={`/group/${groupId}`}>
+            {groupName}
+          </Link>
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "description",
@@ -78,7 +86,3 @@ export const columns: ColumnDef<Group>[] = [
     },
   },
 ];
-
-export type RowDateTimeProps = {
-  dateValue: Date | null;
-};
