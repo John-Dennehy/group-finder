@@ -1,3 +1,3 @@
 export * from "./config";
 export * from "./connection";
-export * as schema from "./schema/groups";
+export * as schema from "./schema";
