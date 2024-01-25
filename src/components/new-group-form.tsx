@@ -92,7 +92,7 @@ export default function NewGroupForm() {
                   onChange={field.onChange}
                   ref={field.ref}
                   name={field.name}
-                  value={field.value} // TODO: fix this type error
+                  value={field.value ?? ""}
                 />
               </FormControl>
               <FormMessage />
