@@ -19,7 +19,7 @@ export default async function AdminPage() {
         <hr />
         <GroupTable />
       </div>
-      <div className="p-4" />
+      <div className="py-4" />
     </main>
   );
 }
