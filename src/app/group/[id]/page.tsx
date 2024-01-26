@@ -1,3 +1,5 @@
+"use server";
+
 import { db } from "@/server/db";
 import groupsTable from "@/server/db/schema";
 import { eq } from "drizzle-orm";

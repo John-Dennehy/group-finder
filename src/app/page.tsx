@@ -4,13 +4,9 @@ import GroupList from "@/components/group-list";
 import { db } from "@/server/db";
 import groupsTable from "@/server/db/schema";
 
-export const selectAllGroups = async () => {
-  const groups = await db.select().from(groupsTable);
-  return groups;
-};
 
 export default async function HomePage() {
-  const groups = await selectAllGroups();
+  const groups = await db.select().from(groupsTable);
 
   return (
     <main className="container mx-auto">
