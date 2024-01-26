@@ -46,7 +46,7 @@ export function DrawerDialog({
           {triggerButton ? (
             triggerButton
           ) : (
-            <Button variant="outline">{title}</Button>
+            <Button variant="secondary">{title}</Button>
           )}
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
