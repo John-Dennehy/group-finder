@@ -7,9 +7,7 @@ import NewGroupForm from "@/components/new-group-form";
 export default async function AdminPage() {
   return (
     <main className="container mx-auto">
-      <div className="flex flex-col gap-4">
-        <h1>Admin Page</h1>
-
+      <div className="flex flex-col gap-4 py-4">
         <DrawerDialog
           title="Create New Group"
           description="Create a new group"
