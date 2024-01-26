@@ -29,7 +29,7 @@ export function GroupActions({ group }: GroupActionsProps) {
       <DropdownMenuContent align="end">
         <DropdownMenuItem>
           <Button variant="link" asChild>
-            <Link href={`/group/${groupId}`}>
+            <Link href={`/groups/${groupId}`}>
               <EyeOpenIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
               View
             </Link>
@@ -37,7 +37,7 @@ export function GroupActions({ group }: GroupActionsProps) {
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Button variant="link" asChild>
-            <Link href={`/group/${groupId}/edit`}>
+            <Link href={`/groups/${groupId}/edit`}>
               <Pencil1Icon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
               Edit
             </Link>
@@ -46,7 +46,7 @@ export function GroupActions({ group }: GroupActionsProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Button variant="destructive" asChild>
-            <Link href={`/group/${groupId}/delete`}>
+            <Link href={`/groups/${groupId}/delete`}>
               <TrashIcon className="mr-2 h-3.5 w-3.5 text-white" />
               Delete
             </Link>
