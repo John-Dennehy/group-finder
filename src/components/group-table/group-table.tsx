@@ -3,7 +3,7 @@
 import { db } from "@/server/db";
 import groupsTable, { GroupSelect } from "@/server/db/schema";
 import { columns } from "./columns";
-import { DataTable } from "./data-table";
+import { DataTable } from "../data-table";
 
 async function getData(): Promise<GroupSelect[]> {
   const groups = await db.select().from(groupsTable);

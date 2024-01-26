@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { GroupSelect } from "@/server/db/schema";
-import { CellDateTime } from "./cell-date-time";
+import { CellDateTime } from "../data-table/cell-date-time";
 import Link from "next/link";
-import { ColumnHeader } from "./column-header";
+import { ColumnHeader } from "../data-table/column-header";
 
-import { ActiveCell } from "./cell-active";
+import { ActiveCell } from "../data-table/cell-active";
 import { GroupActions } from "./cell-group-actions";
 
 export const columns: ColumnDef<GroupSelect>[] = [
