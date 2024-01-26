@@ -12,8 +12,7 @@ import { z } from "zod";
 
 // add prefix for multi-project schema in single Planetscale database
 const prefixedMySqlTable = mysqlTableCreator(
-  (name) =>
-    `${process.env.DATABASE_TABLE_PREFIX}_${process.env.NODE_ENV}_${name}`
+  (name) => `${process.env.DB_TABLE_PREFIX}_${name}`
 );
 
 // drizzle schema for groups table
