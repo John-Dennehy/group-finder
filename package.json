@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "db:push": "drizzle-kit push:mysql --config=drizzle.config.ts",
-    "db:view": "drizzle-kit studio --config=drizzle.config.ts"
+    "db:pull": "drizzle-kit introspect:mysql --config=drizzle.config.ts",
+    "db:view": "drizzle-kit studio --config=drizzle.config.ts",
+    "db:drop": "drizzle-kit drop --config=drizzle.config.ts",
+    "db:up": "drizzle-kit up:mysql --config=drizzle.config.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
