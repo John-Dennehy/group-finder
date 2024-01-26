@@ -24,7 +24,7 @@ export const columns: ColumnDef<GroupSelect>[] = [
       const groupId = props.row.original.id;
       const groupName = props.row.original.name;
       return (
-        <Button variant={"link"} asChild>
+        <Button variant={"link"} asChild className="px-0">
           <Link className="flex items-center" href={`/group/${groupId}`}>
             {groupName}
           </Link>

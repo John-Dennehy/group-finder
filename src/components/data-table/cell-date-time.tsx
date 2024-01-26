@@ -18,5 +18,5 @@ export function CellDateTime<TData, TValue>({
 
   if (cellValue instanceof Date) formattedDate = formatDateTime(cellValue);
 
-  return <div className="flex justify-left pl-4">{formattedDate}</div>;
+  return <div className="flex justify-left">{formattedDate}</div>;
 }
