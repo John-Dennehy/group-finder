@@ -7,7 +7,7 @@ import { prefixedMySqlTable } from "./prefixedMySqlTable";
 
 // drizzle schema for groups table
 export const groupsTable = prefixedMySqlTable("groups", {
-  id: varchar("id", { length: 6 }).primaryKey().$defaultFn(createPublicId),
+  id: varchar("id", { length: 7 }).primaryKey().$defaultFn(createPublicId),
   name: varchar("name", { length: 256 }).notNull(),
   description: text("description"),
   active: boolean("active").default(false).notNull(),
