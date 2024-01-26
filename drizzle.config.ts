@@ -1,12 +1,15 @@
 import type { Config } from "drizzle-kit";
-import "dotenv/config";
+import dotenv from "dotenv";
+
+// Load environment variables from .env.development file
+dotenv.config({ path: ".env.development.local" });
 
 export default {
   schema: "src/server/db/schema.ts",
   out: "src/server/db/migrations",
   driver: "mysql2",
   dbCredentials: {
-    uri: process.env.DB_URI as string,
+    uri: `mysql://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}/${process.env.DB_NAME}?ssl={"rejectUnauthorized":true}`,
   },
   tablesFilter: [process.env.DB_TABLE_PREFIX as string],
 } satisfies Config;
