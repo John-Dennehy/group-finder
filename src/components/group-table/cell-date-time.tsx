@@ -16,11 +16,7 @@ export function CellDateTime<TData, TValue>({
   const columnId = cell.column.id as keyof TData;
   const cellValue = cell.row.original[columnId];
 
-  if (cellValue instanceof Date) {
-    formattedDate = formatDateTime(cellValue);
-  } else {
-    formattedDate = " - ";
-  }
+  if (cellValue instanceof Date) formattedDate = formatDateTime(cellValue);
 
   return <div className="flex justify-left pl-4">{formattedDate}</div>;
 }

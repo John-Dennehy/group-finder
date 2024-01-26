@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { GroupSelect } from "@/server/db/schema";
-import { CellDateTime } from "./date-time-row";
+import { CellDateTime } from "./cell-date-time";
 import Link from "next/link";
 import { ColumnHeader } from "./column-header";
 
