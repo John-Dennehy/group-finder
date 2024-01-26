@@ -28,29 +28,29 @@ export function GroupActions({ group }: GroupActionsProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem>
-          <Link href={`/group/${groupId}`}>
-            <a className="flex items-center">
+          <Button variant="link" asChild>
+            <Link href={`/group/${groupId}`}>
               <EyeOpenIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
               View
-            </a>
-          </Link>
+            </Link>
+          </Button>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link href={`/group/${groupId}/edit`}>
-            <a className="flex items-center">
+          <Button variant="link" asChild>
+            <Link href={`/group/${groupId}/edit`}>
               <Pencil1Icon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
               Edit
-            </a>
-          </Link>
+            </Link>
+          </Button>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link href={`/group/${groupId}/delete`}>
-            <a className="flex items-center">
-              <TrashIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+          <Button variant="destructive" asChild>
+            <Link href={`/group/${groupId}/delete`}>
+              <TrashIcon className="mr-2 h-3.5 w-3.5 text-white" />
               Delete
-            </a>
-          </Link>
+            </Link>
+          </Button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
