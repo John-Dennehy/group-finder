@@ -1,24 +1,15 @@
 "use client";
 
-import { TrashIcon, EyeOpenIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal } from "lucide-react";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { GroupSelect } from "@/server/db/schema";
-import { DateTimeRow } from "./date-time-row";
+import { CellDateTime } from "./date-time-row";
 import Link from "next/link";
 import { ColumnHeader } from "./column-header";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ActiveCell } from "./active-cell";
+import { ActiveCell } from "./cell-active";
+import { GroupActions } from "./cell-group-actions";
 
 export const columns: ColumnDef<GroupSelect>[] = [
   {
@@ -53,79 +44,20 @@ export const columns: ColumnDef<GroupSelect>[] = [
   {
     accessorKey: "createdAt",
     header: ({ column }) => <ColumnHeader column={column} />,
-    cell: (cell) => {
-      const dateValue = cell.row.original.createdAt
-        ? new Date(cell.row.original.createdAt)
-        : null;
-      return <DateTimeRow dateValue={dateValue} />;
-    },
+    cell: ({ cell }) => <CellDateTime cell={cell} />,
   },
   {
     accessorKey: "verifiedAt",
     header: ({ column }) => <ColumnHeader column={column} />,
-    cell: (cell) => {
-      const dateValue = cell.row.original.verifiedAt
-        ? new Date(cell.row.original.verifiedAt)
-        : null;
-      return <DateTimeRow dateValue={dateValue} />;
-    },
+    cell: ({ cell }) => <CellDateTime cell={cell} />,
   },
   {
     accessorKey: "updatedAt",
     header: ({ column }) => <ColumnHeader column={column} />,
-    cell: (cell) => {
-      const dateValue = cell.row.original.updatedAt
-        ? new Date(cell.row.original.updatedAt)
-        : null;
-      return <DateTimeRow dateValue={dateValue} />;
-    },
+    cell: ({ cell }) => <CellDateTime cell={cell} />,
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const group = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>
-              <Button asChild variant="outline" className="w-full">
-                <Link href={`/group/${group.id}`}>
-                  <EyeOpenIcon className="mr-2 h-4 w-4" /> View
-                </Link>
-              </Button>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Button asChild variant="outline" className="w-full">
-                <Link href={`/group/${group.id}/edit`}>
-                  <Pencil1Icon className="mr-2 h-4 w-4" /> Edit
-                </Link>
-              </Button>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Button
-                variant={"destructive"}
-                className="w-full"
-                // TODO: add delete functionality
-                onClick={() => alert(`TODO: Deleted group ${group.name}`)}
-              >
-                <TrashIcon className="mr-2 h-4 w-4" /> Delete
-              </Button>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
+    cell: ({ row }) => <GroupActions group={row.original} />,
   },
 ];
-
-
-

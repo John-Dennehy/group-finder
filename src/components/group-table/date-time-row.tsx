@@ -1,14 +1,26 @@
 "use client";
-import { formatDateTime } from "../../lib/formatDateTime";
 
-export type RowDateTimeProps = {
-  dateValue: Date | null;
+import { HTMLAttributes } from "react";
+import { formatDateTime } from "../../lib/formatDateTime";
+import { Cell } from "@tanstack/react-table";
+
+export type RowDateTimeProps<TData, TValue> = HTMLAttributes<HTMLDivElement> & {
+  cell: Cell<TData, TValue>;
+  date?: Date;
 };
 
-export function DateTimeRow({ dateValue: rowValue }: RowDateTimeProps) {
-  if (!rowValue) {
-    return <div className="font-medium text-center">-</div>;
+export function CellDateTime<TData, TValue>({
+  cell,
+}: RowDateTimeProps<TData, TValue>) {
+  let formattedDate = "";
+  const columnId = cell.column.id as keyof TData;
+  const cellValue = cell.row.original[columnId];
+
+  if (cellValue instanceof Date) {
+    formattedDate = formatDateTime(cellValue);
+  } else {
+    formattedDate = " - ";
   }
-  const formattedDate = formatDateTime(rowValue);
-  return <div className="font-medium text-left">{formattedDate}</div>;
+
+  return <div className="flex justify-left pl-4">{formattedDate}</div>;
 }
