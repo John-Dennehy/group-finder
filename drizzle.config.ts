@@ -10,7 +10,9 @@ export default {
   out: "src/server/db/migrations",
   driver: "mysql2",
   dbCredentials: {
+    // biome-ignore lint/style/noNonNullAssertion: <explanation>
     uri: process.env.DATABASE_URL!,
   },
-  tablesFilter: ["testing_*"],
+  // biome-ignore lint/style/noNonNullAssertion: <explanation>
+  tablesFilter: [process.env.DATABASE_TABLE_PREFIX!],
 } satisfies Config;
