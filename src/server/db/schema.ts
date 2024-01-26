@@ -1,19 +1,9 @@
 import { createPublicId } from "@/lib/create-public-id";
 import { sql } from "drizzle-orm";
-import {
-  boolean,
-  varchar,
-  mysqlTableCreator,
-  text,
-  timestamp,
-} from "drizzle-orm/mysql-core";
+import { boolean, varchar, text, timestamp } from "drizzle-orm/mysql-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
-
-// add prefix for multi-project schema in single Planetscale database
-const prefixedMySqlTable = mysqlTableCreator(
-  (name) => `${process.env.DB_TABLE_PREFIX}_${name}`
-);
+import { prefixedMySqlTable } from "./prefixedMySqlTable";
 
 // drizzle schema for groups table
 export const groupsTable = prefixedMySqlTable("groups", {
