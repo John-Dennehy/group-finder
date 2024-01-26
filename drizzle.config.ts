@@ -1,18 +1,12 @@
 import type { Config } from "drizzle-kit";
-import dotenv from "dotenv";
-
-dotenv.config({
-  path: ".env.local",
-});
+import "dotenv/config";
 
 export default {
   schema: "src/server/db/schema.ts",
   out: "src/server/db/migrations",
   driver: "mysql2",
   dbCredentials: {
-    // biome-ignore lint/style/noNonNullAssertion: <explanation>
-    uri: process.env.DATABASE_URL!,
+    uri: process.env.DB_URI as string,
   },
-  // biome-ignore lint/style/noNonNullAssertion: <explanation>
-  tablesFilter: [process.env.DATABASE_TABLE_PREFIX!],
+  tablesFilter: [process.env.DB_TABLE_PREFIX as string],
 } satisfies Config;
