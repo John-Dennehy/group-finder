@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  CheckCircledIcon,
-  CrossCircledIcon,
-  TrashIcon,
-  EyeOpenIcon,
-  Pencil1Icon,
-} from "@radix-ui/react-icons";
+import { TrashIcon, EyeOpenIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 
@@ -24,6 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ActiveCell } from "./active-cell";
 
 export const columns: ColumnDef<GroupSelect>[] = [
   {
@@ -53,19 +48,7 @@ export const columns: ColumnDef<GroupSelect>[] = [
   {
     accessorKey: "active",
     header: ({ column }) => <ColumnHeader column={column} />,
-    cell: (cell) => {
-      const value = cell.row.original.active;
-      // use green check or red x instead of active value. making sure it is horizontally centered in the column
-      return (
-        <div className="flex justify-left pl-4">
-          {value ? (
-            <CheckCircledIcon className=" h-6 w-6 text-green-500" />
-          ) : (
-            <CrossCircledIcon className="h-6 w-6 text-red-500" />
-          )}
-        </div>
-      );
-    },
+    cell: ({ row }) => <ActiveCell active={row.original.active} />,
   },
   {
     accessorKey: "createdAt",
@@ -143,3 +126,6 @@ export const columns: ColumnDef<GroupSelect>[] = [
     },
   },
 ];
+
+
+
