@@ -1,11 +1,14 @@
 import { HeartHandshakeIcon } from "lucide-react";
 import Link from "next/link";
+import { UserButton, currentUser } from "@clerk/nextjs";
 
 type HeaderProps = {
   title: string;
 };
 
-export default function Header({ title }: HeaderProps) {
+export default async function Header({ title }: HeaderProps) {
+  const user = await currentUser();
+
   return (
     <>
       <header className=" bg-primary text-primary-foreground">
@@ -23,30 +26,10 @@ export default function Header({ title }: HeaderProps) {
                 Login
               </Link>
             </nav>
-            {/* <Sheet className="lg:hidden">
-          <SheetTrigger asChild>
-            <Button size="icon" variant="outline">
-              <MenuIcon className="h-6 w-6" />
-              <span className="sr-only">Toggle navigation menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left">
-            <div className="grid gap-2 py-6">
-              <Link
-                className="flex w-full items-center py-2 text-lg font-semibold"
-                href="#"
-              >
-                Suggest new Group
-              </Link>
-              <Link
-                className="flex w-full items-center py-2 text-lg font-semibold"
-                href="#"
-              >
-                Login
-              </Link>
+            <div>
+              {user && <p>{`Welcome ${user?.firstName}`}</p>}
+              <UserButton />
             </div>
-          </SheetContent>
-        </Sheet> */}
           </div>
         </div>
       </header>
