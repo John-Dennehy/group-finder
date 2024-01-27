@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
-
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ReactNode } from "react";
@@ -19,12 +19,14 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body className={GeistSans.className}>
-        <Header title="Test" />
-        {children}
-        <Toaster />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={GeistSans.className}>
+          <Header title="Test" />
+          {children}
+          <Toaster />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
