@@ -1,13 +1,13 @@
 import { HeartHandshakeIcon } from "lucide-react";
 import Link from "next/link";
-import { UserButton, currentUser, SignInButton, useUser } from "@clerk/nextjs";
+import { UserButton, currentUser, SignInButton } from "@clerk/nextjs";
 
 type HeaderProps = {
   title: string;
 };
 
 export default async function Header({ title }: HeaderProps) {
-const user = useUser();
+  const user = await currentUser();
 
   return (
     <>
@@ -31,7 +31,7 @@ const user = useUser();
             <div className="flex flex-row gap-2 items-center">
               {user && (
                 <>
-                  <p className="align-middle">{`Welcome ${user.user?.firstName}`}</p>
+                  <p className="align-middle">{`Welcome ${user.firstName}`}</p>
                   <UserButton />
                 </>
               )}
