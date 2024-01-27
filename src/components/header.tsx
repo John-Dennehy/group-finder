@@ -26,8 +26,10 @@ export default async function Header({ title }: HeaderProps) {
                 Login
               </Link>
             </nav>
-            <div>
-              {user && <p>{`Welcome ${user?.firstName}`}</p>}
+            <div className="flex flex-row gap-2 items-center">
+              {user && (
+                <p className="align-middle">{`Welcome ${user?.firstName}`}</p>
+              )}
               <UserButton />
             </div>
           </div>
