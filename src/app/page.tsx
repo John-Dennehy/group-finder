@@ -1,13 +1,9 @@
 "use server";
 
 import { Button } from "@/components/ui/button";
-import { db } from "@/server/db";
-import groupsTable from "@/server/db/schema";
 import Link from "next/link";
 
 export default async function HomePage() {
-  const groups = await db.select().from(groupsTable);
-
   return (
     <main className="container mx-auto">
       <div className="flex flex-col gap-4">

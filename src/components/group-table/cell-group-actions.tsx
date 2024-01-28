@@ -2,7 +2,7 @@
 import { TrashIcon, EyeOpenIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
-import { GroupSelect } from "@/server/db/schema";
+import { GroupSelect } from "@/server/db/schema/groups_schema";
 import Link from "next/link";
 import {
   DropdownMenu,

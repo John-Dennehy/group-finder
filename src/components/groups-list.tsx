@@ -1,4 +1,4 @@
-import groupsTable, { GroupSelect } from "@/server/db/schema";
+import groupsTable, { GroupSelect } from "@/server/db/schema/groups_schema";
 import { GroupCard } from "./group-card/group-card";
 import Link from "next/link";
 
@@ -34,7 +34,5 @@ export function GroupList({ groups }: GroupListProps) {
     </div>
   );
 }
-
-
 
 export default GroupList;

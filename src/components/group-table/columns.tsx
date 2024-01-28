@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { GroupSelect } from "@/server/db/schema";
+import { GroupSelect } from "@/server/db/schema/groups_schema";
 import { CellDateTime } from "../data-table/cell-date-time";
 import Link from "next/link";
 import { ColumnHeader } from "../data-table/column-header";

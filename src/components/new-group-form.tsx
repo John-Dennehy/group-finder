@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { zodInsertGroupSchema } from "@/server/db/schema";
+import { zodInsertGroupSchema } from "@/server/db/schema/groups_schema";
 import { newGroupAction } from "@/server/actions/new-group-action";
 import { toast } from "sonner";
 import { Textarea } from "./ui/textarea";
