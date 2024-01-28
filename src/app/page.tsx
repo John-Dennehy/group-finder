@@ -1,6 +1,5 @@
 "use server";
 
-import GroupList from "@/components/groups-list";
 import { Button } from "@/components/ui/button";
 import { db } from "@/server/db";
 import groupsTable from "@/server/db/schema";
