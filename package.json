@@ -7,11 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:migrate": "migrations:generate && migrations:push",
+    "db:migrate": "pnpm migrations:generate && pnpm migrations:push",
     "db:view": "drizzle-kit studio --config=drizzle.config.ts",
-        "migrations:generate": "drizzle-kit generate:mysql",
-        "migrations:push": "drizzle-kit push:mysql --config=drizzle.config.ts",
-        "migrations:drop": "drizzle-kit drop --config=drizzle.config.ts"
+    "migrations:generate": "drizzle-kit generate:mysql",
+    "migrations:push": "drizzle-kit push:mysql --config=drizzle.config.ts",
+    "migrations:drop": "drizzle-kit drop --config=drizzle.config.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.5",
