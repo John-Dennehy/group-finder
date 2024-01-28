@@ -18,7 +18,7 @@ export const groupsTable = prefixedMySqlTable("groups", {
   updatedAt: timestamp("updated_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
-  deletedAt: timestamp("deleted_at"),
+  // deletedAt: timestamp("deleted_at"),
 });
 
 // TODO: Move validation to where it is used
