@@ -1,5 +1,5 @@
 import { GroupSelect } from "@/server/db/schema";
-import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { AttendeeTypesList } from "./attendee-types-list";
 
 type GroupCardProps = {
@@ -66,4 +66,3 @@ export function GroupCard({ group }: GroupCardProps) {
     </Card>
   );
 }
-

@@ -1,5 +1,5 @@
 import groupsTable, { GroupSelect } from "@/server/db/schema";
-import { GroupCard } from "./group-card";
+import { GroupCard } from "./group-card/group-card";
 
 type GroupListProps = {
   groups: GroupSelect[];

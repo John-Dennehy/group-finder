@@ -1,11 +1,11 @@
 import { AttendeeType } from "./group-card";
-import { Badge } from "./ui/badge";
+import { Badge } from "../ui/badge";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "../ui/tooltip";
 
 type AttendeeTypesListProps = {
   attendeeTypes: AttendeeType[];
