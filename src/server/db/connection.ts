@@ -1,9 +1,15 @@
-import { config, schema } from "@/server/db";
-import { connect } from "@planetscale/database";
+import { connect, Config as PlanetscaleConfig } from "@planetscale/database";
 import { drizzle } from "drizzle-orm/planetscale-serverless";
+import * as schema from "./schema";
+
+export const planetscaleConfig: PlanetscaleConfig = {
+  host: process.env.DATABASE_HOST,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+};
 
 // create the connection
-const connection = connect(config);
+export const connection = connect(planetscaleConfig);
 export const db = drizzle(connection, { schema });
 
 export default db;

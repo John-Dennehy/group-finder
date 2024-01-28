@@ -1,3 +1,2 @@
-export * from "./config";
 export * from "./connection";
-export * as schema from "./schema";
+export { default as db } from "./connection";
