@@ -1,6 +1,6 @@
 "use server";
 
-import GroupList from "@/components/group-list";
+import GroupList from "@/components/groups-list";
 import { db } from "@/server/db";
 import groupsTable from "@/server/db/schema";
 
