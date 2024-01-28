@@ -1,17 +1,15 @@
 import groupsTable, { GroupSelect } from "@/server/db/schema";
 import { GroupCard } from "./group-card/group-card";
+import Link from "next/link";
 
 type GroupListProps = {
   groups: GroupSelect[];
 };
 
 export function GroupList({ groups }: GroupListProps) {
-  return (
-    <div className="flex flex-col gap-4 py-4">
-      {/* if list is empty, display a short message instead of a list  */}
-      {groups.length === 0 && <p>No groups found...</p>}
-      {/* if list is not empty, display a list of groups */}
-      {groups.length > 0 && (
+  if (groups.length > 0) {
+    return (
+      <div className="flex flex-col gap-4 py-4">
         <ul className="flex flex-col gap-2">
           {groups.map((group) => (
             <li key={group.id}>
@@ -19,9 +17,24 @@ export function GroupList({ groups }: GroupListProps) {
             </li>
           ))}
         </ul>
-      )}
+      </div>
+    );
+  }
+
+  // If there are no groups to display, show a message
+  return (
+    <div className="flex flex-col gap-4 py-4">
+      <p className="text-gray-500 text-center">
+        There are no groups to display. Maybe you could
+        <Link href="/groups/new" className="text-blue-500">
+          {" "}
+          create one
+        </Link>
+      </p>
     </div>
   );
 }
+
+
 
 export default GroupList;
