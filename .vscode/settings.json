@@ -1,3 +1,15 @@
 {
-  "cSpell.words": ["clsx", "hookform", "lucide", "nextjs", "planetscale", "sonner", "vaul"]
+  "cSpell.words": [
+    "clsx",
+    "hookform",
+    "lucide",
+    "nextjs",
+    "planetscale",
+    "sonner",
+    "vaul"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": true,
+    "quickfix.biome": true
+  }
 }
