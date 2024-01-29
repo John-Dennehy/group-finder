@@ -1,9 +1,9 @@
-"use server"; // don't forget to add this!
+"use server";
 
+import { db } from "@/db";
+import { groupsTable, zodInsertGroupSchema } from "@/db/schema/groups_schema";
 import { action } from "@/lib/safe-action-client";
 import { revalidatePath } from "next/cache";
-import { db } from "../../db";
-import groupsTable, { zodInsertGroupSchema } from "../../db/schema/groups_schema";
 
 type ActionSuccess = { success: true; status: "success" };
 type ActionError = { success: false; status: "error"; errorMessage: string };
