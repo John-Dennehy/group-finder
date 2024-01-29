@@ -1,15 +1,16 @@
-import { Roles } from "@/types/globals";
-import { auth } from "@clerk/nextjs";
+import { Role } from "@/types/globals";
+import { auth, clerkClient } from "@clerk/nextjs";
 
-export function checkRole(role: Roles) {
+export function checkRole(role: Role) {
   const { sessionClaims } = auth();
-  console.log("sessionClaims", sessionClaims);
   if (!sessionClaims) return false;
 
   return sessionClaims?.role === role;
 }
 
-
-export function isAdmin() {
-  return checkRole("admin");
+export async function setRole(role: Role, userId: string) {
+  // Update the user's metadata
+  await clerkClient.users.updateUserMetadata(userId, {
+    publicMetadata: { role },
+  });
 }
