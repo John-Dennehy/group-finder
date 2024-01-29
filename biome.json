@@ -8,5 +8,16 @@
 		"rules": {
 			"recommended": true
 		}
-	}
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "space"
+	},
+	"files": {
+		"ignore": [
+			"**/node_modules/**",
+			"**/migrations/**",
+			"**/components/ui/**"
+		]
+}
 }
