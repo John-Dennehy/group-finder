@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { checkRole } from "@/lib/roles";
+import { checkRole } from "@/server/roles";
 import { redirect } from "next/navigation";
 
 type AdminLayoutProps = {
