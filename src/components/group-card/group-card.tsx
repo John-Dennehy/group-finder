@@ -1,4 +1,4 @@
-import { GroupSelect } from "@/server/db/schema/groups_schema";
+import { GroupSelect } from "@/db/schema/groups_schema";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { AttendeeTypesList } from "./attendee-types-list";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { GroupSelect } from "@/server/db/schema/groups_schema";
+import { GroupSelect } from "@/db/schema/groups_schema";
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
 import { ActiveCell } from "../data-table/cell-active";

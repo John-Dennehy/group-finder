@@ -1,4 +1,4 @@
-import groupsTable, { GroupSelect } from "@/server/db/schema/groups_schema";
+import groupsTable, { GroupSelect } from "@/db/schema/groups_schema";
 import Link from "next/link";
 import { GroupCard } from "./group-card/group-card";
 
