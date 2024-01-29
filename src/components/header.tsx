@@ -1,6 +1,6 @@
+import { SignInButton, UserButton, currentUser } from "@clerk/nextjs";
 import { HeartHandshakeIcon } from "lucide-react";
 import Link from "next/link";
-import { UserButton, currentUser, SignInButton } from "@clerk/nextjs";
 
 type HeaderProps = {
   title: string;

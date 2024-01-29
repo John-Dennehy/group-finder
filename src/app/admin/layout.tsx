@@ -1,14 +1,14 @@
 "use server";
 
-import { redirect } from "next/navigation";
-import { checkRole } from "@/utils/roles";
 // import { Separator } from "@/components/ui/separator";
 import {
   Accordion,
-  AccordionItem,
   AccordionContent,
+  AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { checkRole } from "@/utils/roles";
+import { redirect } from "next/navigation";
 
 type AdminLayoutProps = {
   children: React.ReactNode;

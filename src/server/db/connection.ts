@@ -1,4 +1,4 @@
-import { connect, Config as PlanetscaleConfig } from "@planetscale/database";
+import { Config as PlanetscaleConfig, connect } from "@planetscale/database";
 import { drizzle } from "drizzle-orm/planetscale-serverless";
 import * as schema from "./schema";
 

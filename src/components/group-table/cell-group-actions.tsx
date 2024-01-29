@@ -1,9 +1,5 @@
 "use client";
-import { TrashIcon, EyeOpenIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal } from "lucide-react";
-import { GroupSelect } from "@/server/db/schema/groups_schema";
-import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +7,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { GroupSelect } from "@/server/db/schema/groups_schema";
+import { EyeOpenIcon, Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import { MoreHorizontal } from "lucide-react";
+import Link from "next/link";
 
 type GroupActionsProps = {
   group: GroupSelect;

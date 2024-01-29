@@ -1,11 +1,10 @@
 "use server";
 
-import { clerkClient } from "@clerk/nextjs";
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { clerkClient } from "@clerk/nextjs";
 import { unstable_noStore } from "next/cache";
+import Image from "next/image";
 import { RoleSection } from "./role-section";
 
 export default async function AdminUsers() {

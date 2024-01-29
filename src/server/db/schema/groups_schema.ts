@@ -12,15 +12,9 @@ export const groupsTable = prefixedMySqlTable("groups", {
   description: text("description"),
   active: boolean("active").default(false).notNull(),
   verifiedAt: timestamp("verified_at"),
-  createdAt: timestamp("created_at")
-    .default(sql`CURRENT_TIMESTAMP`)
-    .notNull(),
-  updatedAt: timestamp("updated_at")
-    .default(sql`CURRENT_TIMESTAMP`)
-    .notNull(),
+  createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
+  updatedAt: timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
 });
-
-
 
 // TODO: Move validation to where it is used?
 // zod insert schema for groups table

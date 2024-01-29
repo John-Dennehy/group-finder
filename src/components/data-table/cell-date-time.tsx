@@ -1,8 +1,8 @@
 "use client";
 
+import { Cell } from "@tanstack/react-table";
 import { HTMLAttributes } from "react";
 import { formatDateTime } from "../../lib/formatDateTime";
-import { Cell } from "@tanstack/react-table";
 
 export type RowDateTimeProps<TData, TValue> = HTMLAttributes<HTMLDivElement> & {
   cell: Cell<TData, TValue>;
