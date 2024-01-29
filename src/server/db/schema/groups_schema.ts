@@ -1,6 +1,6 @@
 import { createPublicId } from "@/lib/create-public-id";
 import { sql } from "drizzle-orm";
-import { boolean, varchar, text, timestamp } from "drizzle-orm/mysql-core";
+import { boolean, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 import { prefixedMySqlTable } from "../prefixedMySqlTable";
@@ -18,10 +18,11 @@ export const groupsTable = prefixedMySqlTable("groups", {
   updatedAt: timestamp("updated_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
-  // deletedAt: timestamp("deleted_at"),
 });
 
-// TODO: Move validation to where it is used
+
+
+// TODO: Move validation to where it is used?
 // zod insert schema for groups table
 export const zodInsertGroupSchema = createInsertSchema(groupsTable, {
   // We can add additional validation here.
