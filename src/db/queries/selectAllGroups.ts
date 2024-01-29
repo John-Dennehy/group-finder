@@ -1,6 +1,6 @@
 "use server";
 
-import { db } from "../connection";
+import { db } from "@/db";
 
 export default async function selectAllGroups() {
   try {
