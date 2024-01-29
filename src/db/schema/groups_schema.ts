@@ -12,8 +12,10 @@ export const groupsTable = prefixedMySqlTable("groups", {
   description: text("description"),
   active: boolean("active").default(false).notNull(),
   verifiedAt: timestamp("verified_at"),
-  createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
-  updatedAt: timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
+  createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: timestamp("updated_at").default(
+    sql`CURRENT_TIMESTAMP ON UPDATE SET CURRENT_TIMESTAMP`,
+  ),
 });
 
 // zod insert schema for groups table
