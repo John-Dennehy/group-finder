@@ -32,7 +32,7 @@ export default async function Header({ title }: HeaderProps) {
               {user && (
                 <>
                   <p className="align-middle">{`Welcome ${user.firstName}`}</p>
-                  <UserButton />
+                  <UserButton afterSignOutUrl="/" />
                 </>
               )}
               {!user && <SignInButton />}
