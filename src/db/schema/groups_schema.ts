@@ -1,6 +1,6 @@
 import { createPublicId } from "@/lib/create-public-id";
 import { sql } from "drizzle-orm";
-import { boolean, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { boolean, datetime, text, varchar } from "drizzle-orm/mysql-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 import { prefixedMySqlTable } from "../prefixedMySqlTable";
@@ -11,10 +11,10 @@ export const groupsTable = prefixedMySqlTable("groups", {
   name: varchar("name", { length: 256 }).notNull(),
   description: text("description"),
   active: boolean("active").default(false).notNull(),
-  verifiedAt: timestamp("verified_at"),
-  createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: timestamp("updated_at").default(
-    sql`CURRENT_TIMESTAMP ON UPDATE SET CURRENT_TIMESTAMP`,
+  verifiedAt: datetime("verified_at"),
+  createdAt: datetime("created_at").default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: datetime("updated_at").default(
+    sql`CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`,
   ),
 });
 
