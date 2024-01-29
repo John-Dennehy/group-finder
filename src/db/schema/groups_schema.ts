@@ -16,11 +16,8 @@ export const groupsTable = prefixedMySqlTable("groups", {
   updatedAt: timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
 });
 
-// TODO: Move validation to where it is used?
 // zod insert schema for groups table
 export const zodInsertGroupSchema = createInsertSchema(groupsTable, {
-  // We can add additional validation here.
-  // For example, we can check that the username is unique.
   name: z
     .string()
     .min(4, "Group name must be at least 4 characters long")
@@ -32,9 +29,7 @@ export const zodInsertGroupSchema = createInsertSchema(groupsTable, {
 export const zodUpdateGroupSchema = zodInsertGroupSchema.partial();
 
 // zod select schema for groups table
-export const zodSelectGroupSchema = createSelectSchema(groupsTable, {
-  // We can add additional validation here.
-});
+export const zodSelectGroupSchema = createSelectSchema(groupsTable);
 
 export type GroupSelect = typeof groupsTable.$inferSelect;
 export type GroupInsert = typeof groupsTable.$inferInsert;
