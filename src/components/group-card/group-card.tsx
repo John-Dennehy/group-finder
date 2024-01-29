@@ -1,9 +1,9 @@
-import { GroupSelect } from "@/db/schema/groups_schema";
+import { Group } from "@/db/schema/groups_schema";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { AttendeeTypesList } from "./attendee-types-list";
 
 type GroupCardProps = {
-  group: GroupSelect;
+  group: Group;
 };
 
 export type AttendeeType = {

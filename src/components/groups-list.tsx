@@ -1,9 +1,9 @@
-import groupsTable, { GroupSelect } from "@/db/schema/groups_schema";
+import { Group } from "@/db/schema/groups_schema";
 import Link from "next/link";
 import { GroupCard } from "./group-card/group-card";
 
 type GroupListProps = {
-  groups: GroupSelect[];
+  groups: Group[];
 };
 
 export function GroupList({ groups }: GroupListProps) {
