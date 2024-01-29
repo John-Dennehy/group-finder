@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useAction } from "next-safe-action/hooks";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,8 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodInsertGroupSchema } from "@/server/db/schema/groups_schema";
 import { newGroupAction } from "@/server/actions/new-group-action";
-import { toast } from "sonner";
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function NewGroupForm() {
   const form = useForm<z.infer<typeof zodInsertGroupSchema>>({
@@ -30,15 +30,12 @@ export default function NewGroupForm() {
     },
   });
 
-  const action = useAction(newGroupAction, {
-    onExecute: (input) => {
-      // ... show toast on client
-    },
+  const { execute: createNewGroup, status } = useAction(newGroupAction, {
     onSuccess: (data, input, reset) => {
       toast.success(`Success: ${input.name} saved`);
       form.reset();
     },
-    onError: (error, input, reset) => {
+    onError: (error, input) => {
       if (error.fetchError)
         toast.error(
           `Fetch Error: ${error.fetchError}. Failed to create ${input.name}`
@@ -50,13 +47,12 @@ export default function NewGroupForm() {
       if (error.validationErrors)
         toast.error(`Validation errors: ${error.validationErrors}`);
     },
-    onSettled: (result, input, reset) => {
-      // reset();
-    },
   });
 
+  const isLoading = status === "executing";
+
   function handleValidSubmit(data: z.infer<typeof zodInsertGroupSchema>) {
-    action.execute(data);
+    createNewGroup(data);
   }
 
   return (
@@ -88,9 +84,6 @@ export default function NewGroupForm() {
                 <Textarea
                   placeholder="Group description..."
                   {...field}
-                  onChange={field.onChange}
-                  ref={field.ref}
-                  name={field.name}
                   value={field.value ?? ""}
                 />
               </FormControl>
@@ -98,12 +91,8 @@ export default function NewGroupForm() {
             </FormItem>
           )}
         />
-        <Button
-          className="w-full"
-          disabled={action.status === "executing"}
-          type="submit"
-        >
-          {action.status === "executing" ? "Saving..." : "Save"}
+        <Button className="w-full" disabled={isLoading} type="submit">
+          {isLoading ? "Saving..." : "Save"}
         </Button>
       </form>
     </Form>
