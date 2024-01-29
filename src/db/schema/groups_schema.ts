@@ -22,7 +22,7 @@ export const zodInsertGroupSchema = createInsertSchema(groupsTable, {
     .string()
     .min(4, "Group name must be at least 4 characters long")
     .max(255, "Group name must be no more then 255 characters long"),
-  description: z.string().describe("blah").max(1024).optional(),
+  description: z.string().max(1024).optional(),
 });
 
 // zod update schema for groups table
