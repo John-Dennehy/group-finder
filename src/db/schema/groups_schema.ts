@@ -2,7 +2,7 @@ import { createPublicId } from "@/lib/create-public-id";
 import { sql } from "drizzle-orm";
 import { boolean, datetime, text, varchar } from "drizzle-orm/mysql-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-import { z } from "zod";
+import { string, z } from "zod";
 import { prefixedMySqlTable } from "../prefixedMySqlTable";
 
 // drizzle schema for groups table
@@ -28,7 +28,7 @@ export const zodInsertGroupSchema = createInsertSchema(groupsTable, {
 });
 
 // zod update schema for groups table
-export const zodUpdateGroupSchema = zodInsertGroupSchema.partial();
+export const zodUpdateGroupSchema = zodInsertGroupSchema.partial({ id: true });
 
 // zod select schema for groups table
 export const zodSelectGroupSchema = createSelectSchema(groupsTable);
@@ -36,5 +36,7 @@ export const zodSelectGroupSchema = createSelectSchema(groupsTable);
 // typescript types for groups table
 export type Group = typeof groupsTable.$inferSelect;
 export type NewGroup = typeof groupsTable.$inferInsert;
+export type UpdateGroup = Required<Pick<Group, "id">> &
+  Partial<Omit<Group, "id">>;
 
 export default groupsTable;

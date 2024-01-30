@@ -37,7 +37,7 @@ export const columns: ColumnDef<Group>[] = [
   {
     accessorKey: "active",
     header: ({ column }) => <ColumnHeader column={column} />,
-    cell: ({ row }) => <ActiveCell active={row.original.active} />,
+    cell: ({ row }) => <ActiveCell group={row.original} />,
   },
   {
     accessorKey: "createdAt",
