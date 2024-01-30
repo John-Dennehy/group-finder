@@ -15,8 +15,7 @@ export default async function AdminUsers() {
     // limit: 10,
     // query: "role",
   });
-  console.log(users);
-
+  
   return (
     <>
       <h3 className="py-4 font-bold">Users:</h3>
