@@ -1,6 +1,5 @@
 "use server";
 
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { clerkClient } from "@clerk/nextjs";
 import { unstable_noStore } from "next/cache";
