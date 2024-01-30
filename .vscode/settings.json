@@ -12,5 +12,8 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports.biome": true,
     "quickfix.biome": true
-  }
+  },
+  "files.associations": {
+        "*.css": "tailwindcss"
+    }
 }
