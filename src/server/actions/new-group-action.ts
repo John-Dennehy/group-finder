@@ -1,7 +1,7 @@
 "use server";
 
-import { db } from "@/db";
-import { groupsTable, zodInsertGroupSchema } from "@/db/schema/groups_schema";
+import { createGroup } from "@/db/queries/createGroup";
+import { zodInsertGroupSchema } from "@/db/schema/groups_schema";
 import { action } from "@/lib/safe-action-client";
 import { revalidatePath } from "next/cache";
 
@@ -13,7 +13,7 @@ const schema = zodInsertGroupSchema;
 
 export const newGroupAction = action(zodInsertGroupSchema, async (newGroup) => {
   // ... create new group in database
-  await db.insert(groupsTable).values(newGroup).execute();
+  await createGroup(newGroup);
 
   // ... return success message	on server console
   console.log("newGroupAction", newGroup);
