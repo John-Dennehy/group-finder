@@ -2,7 +2,7 @@
 
 import { db } from "@/db";
 
-export default async function selectAllGroups() {
+export async function selectAllGroups() {
   try {
     return await db.query.groupsTable.findMany();
   } catch (error: unknown) {

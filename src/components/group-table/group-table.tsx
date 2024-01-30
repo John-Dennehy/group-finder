@@ -1,6 +1,6 @@
 "use server";
 
-import selectAllGroups from "@/db/queries/selectAllGroups";
+import { selectAllGroups } from "@/db/queries/selectAllGroups";
 import { DataTable } from "../data-table";
 import { columns } from "./columns";
 

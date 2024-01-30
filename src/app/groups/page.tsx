@@ -1,7 +1,7 @@
 "use server";
 
 import GroupList from "@/components/groups-list";
-import selectAllGroups from "@/db/queries/selectAllGroups";
+import { selectAllGroups } from "@/db/queries/selectAllGroups";
 
 export default async function GroupsPage() {
   const groups = (await selectAllGroups()) || [];
