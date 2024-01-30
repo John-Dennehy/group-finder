@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { checkRole } from "@/server/roles";
+import { getUserRole } from "@/server/user-role";
 import { redirect } from "next/navigation";
 
 type AdminLayoutProps = {
@@ -19,7 +19,9 @@ type AdminLayoutProps = {
 export default async function AdminLayout({ groups, users }: AdminLayoutProps) {
   // If the user does not have the admin role, redirect them to the home page
 
-  if (!checkRole("admin")) {
+  const userRole = await getUserRole();
+
+  if (userRole !== "admin") {
     redirect("/");
   }
 
