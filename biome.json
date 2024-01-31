@@ -15,6 +15,7 @@
 	},
 	"files": {
 		"ignore": [
+			"**/.next/**",
 			"**/node_modules/**",
 			"**/migrations/**",
 			"**/components/ui/**"
