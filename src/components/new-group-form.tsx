@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { zodInsertGroupSchema } from "@/db/schema/groups_schema";
+import { zodInsertGroupSchema } from "@/db/schema/groups-schema";
 import { newGroupAction } from "@/server/actions/new-group-action";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";

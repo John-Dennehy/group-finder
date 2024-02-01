@@ -1,6 +1,6 @@
-import { Group } from "@/db/schema/groups_schema";
+import { GroupCard } from "@/components/group-card/group-card";
+import { Group } from "@/db/schema/groups-schema";
 import Link from "next/link";
-import { GroupCard } from "./group-card/group-card";
 
 type GroupListProps = {
   groups: Group[];

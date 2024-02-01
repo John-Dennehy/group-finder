@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/db";
-import groupsTable from "@/db/schema/groups_schema";
+import groupsTable from "@/db/schema/groups-schema";
 import { eq } from "drizzle-orm";
 
 type GroupPageProps = {

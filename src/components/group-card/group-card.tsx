@@ -1,5 +1,10 @@
-import { Group } from "@/db/schema/groups_schema";
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Group } from "@/db/schema/groups-schema";
 import { AttendeeTypesList } from "./attendee-types-list";
 
 type GroupCardProps = {
