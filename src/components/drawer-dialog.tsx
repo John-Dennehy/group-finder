@@ -27,14 +27,14 @@ type DrawerDialogProps = {
   triggerButton?: ReactNode;
   title: string;
   description?: string;
-  form?: ReactNode;
+  children?: ReactNode;
 };
 
 export function DrawerDialog({
   title,
   triggerButton,
   description,
-  form,
+  children,
 }: DrawerDialogProps) {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -56,7 +56,7 @@ export function DrawerDialog({
               <DialogDescription>{description}</DialogDescription>
             )}
           </DialogHeader>
-          {form && form}
+          <div>{children}</div>
         </DialogContent>
       </Dialog>
     );
@@ -76,7 +76,7 @@ export function DrawerDialog({
             <DrawerTitle>{title}</DrawerTitle>
             <DrawerDescription>{description}</DrawerDescription>
           </DrawerHeader>
-          <div className="m-4">{form && form}</div>
+          <div className="m-4">{children}</div>
           <DrawerFooter className="pt-2">
             <DrawerClose asChild>
               <Button variant="outline">Cancel</Button>
