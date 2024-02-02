@@ -15,6 +15,13 @@
       "when": 1706570487856,
       "tag": "0001_steep_reptil",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1706880254487,
+      "tag": "0002_wet_malice",
+      "breakpoints": true
     }
   ]
 }
