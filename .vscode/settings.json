@@ -10,8 +10,8 @@
     "vaul"
   ],
   "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": true,
-    "quickfix.biome": true
+    "source.organizeImports.biome": "explicit",
+    "quickfix.biome": "explicit"
   },
   "files.associations": {
         "*.css": "tailwindcss"
