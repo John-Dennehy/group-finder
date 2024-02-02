@@ -15,7 +15,7 @@ export default defineConfig({
     uri: `mysql://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}/${process.env.DB_NAME}?ssl={"rejectUnauthorized":true}`,
   },
   strict: true,
-  verbose: false,
+  verbose: true,
   introspect: { casing: "camel" },
   breakpoints: true,
   tablesFilter: [`${process.env.DB_TABLE_PREFIX}_*`],
