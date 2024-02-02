@@ -6,7 +6,7 @@ import { mysqlEnum, time } from "drizzle-orm/mysql-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 import { prefixedMySqlTable } from "../prefixedMySqlTable";
-import { groupsTable } from "./groups-schema";
+import { groupsTable } from "./groups";
 
 // drizzle schema for group-schedule table
 export const groupScheduleTable = prefixedMySqlTable("groups", {

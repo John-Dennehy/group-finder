@@ -4,7 +4,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Group } from "@/db/schema/groups-schema";
+import { Group } from "@/db/schema/groups";
 import { AttendeeTypesList } from "./attendee-types-list";
 
 type GroupCardProps = {

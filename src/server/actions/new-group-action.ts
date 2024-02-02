@@ -1,7 +1,7 @@
 "use server";
 
 import { createGroup } from "@/db/queries/createGroup";
-import { zodInsertGroupSchema } from "@/db/schema/groups-schema";
+import { zodInsertGroupSchema } from "@/db/schema/groups";
 import { action } from "@/lib/safe-action-client";
 import { revalidatePath } from "next/cache";
 
