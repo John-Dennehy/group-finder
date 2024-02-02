@@ -9,7 +9,7 @@ import { prefixedMySqlTable } from "../prefixedMySqlTable";
 import { groupsTable } from "./groups";
 
 // drizzle schema for group-schedule table
-export const groupScheduleTable = prefixedMySqlTable("groups", {
+export const groupScheduleTable = prefixedMySqlTable("group_schedule", {
   id: int("int").autoincrement().primaryKey(),
   groupId: varchar("group_id", { length: 6 }).notNull(), //.references(() => groupsTable.id),
   weekday: mysqlEnum("weekday", weekdays).notNull(),
