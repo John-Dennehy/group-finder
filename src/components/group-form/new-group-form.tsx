@@ -19,10 +19,16 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-export default function NewGroupForm() {
+
+type NewGroupFormProps = {
+  groupId?: string;
+};
+
+export default function NewGroupForm({ groupId }: NewGroupFormProps) {
   const form = useForm<z.infer<typeof zodInsertGroupSchema>>({
     resolver: zodResolver(zodInsertGroupSchema),
     defaultValues: {
+      id: groupId ?? "",
       name: "",
       active: false,
       description: "",
