@@ -11,7 +11,7 @@ import { groupsTable } from "./groups";
 // drizzle schema for group-schedule table
 export const groupScheduleTable = prefixedMySqlTable("group_schedule", {
   id: int("int").autoincrement().primaryKey(),
-  groupId: varchar("group_id", { length: 6 }).notNull(), //.references(() => groupsTable.id),
+  groupId: varchar("group_id", { length: 7 }).notNull(), //.references(() => groupsTable.id),
   weekday: mysqlEnum("weekday", weekdays).notNull(),
   startTime: time("start-time").notNull(),
   endTime: time("end-time").notNull(),
@@ -45,3 +45,9 @@ export const zodInsertGroupScheduleSchema = createInsertSchema(
 // zod select schema for group-schedule table
 export const zodSelectGroupScheduleSchema =
   createSelectSchema(groupScheduleTable);
+
+// typescript types for groups table
+export type GroupSchedule = typeof groupScheduleTable.$inferSelect;
+export type NewGroupSchedule = typeof groupScheduleTable.$inferInsert;
+export type UpdateGroupSchedule = Required<Pick<GroupSchedule, "id">> &
+  Partial<Omit<GroupSchedule, "id">>;

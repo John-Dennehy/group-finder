@@ -22,6 +22,13 @@
       "when": 1706880254487,
       "tag": "0002_wet_malice",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1707083728890,
+      "tag": "0003_adorable_micromacro",
+      "breakpoints": true
     }
   ]
 }
