@@ -1,111 +1,153 @@
 "use client";
 
 import { zodInsertGroupScheduleSchema } from "@/db/schema";
+import { newGroupScheduleAction } from "@/server/actions/new-group-schedule-action";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAction } from "next-safe-action/hooks";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "../ui/button";
-import { Form, FormControl, FormItem, FormLabel } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 
-export function NewScheduleForm() {
+type NewScheduleFormProps = {
+  groupId?: string;
+};
+
+export function NewScheduleForm({ groupId }: NewScheduleFormProps) {
   const form = useForm<z.infer<typeof zodInsertGroupScheduleSchema>>({
     resolver: zodResolver(zodInsertGroupScheduleSchema),
     defaultValues: {
-      groupId: "",
+      groupId: groupId ?? "",
       startTime: "",
       endTime: "",
-      weekday: undefined,
+      weekday: "Mon",
       active: true,
       description: "",
     },
   });
 
-  const isLoading = false;
+  const { execute: createNewSchedule, status } = useAction(
+    newGroupScheduleAction,
+    {
+      onSuccess: (data, input, reset) => {
+        toast.success(`Success: ${input.weekday} schedule saved`);
+        form.reset();
+      },
+      onError: (error, input) => {
+        if (error.fetchError)
+          toast.error(
+            `Fetch Error: ${error.fetchError}. Failed to create ${input.weekday}`,
+          );
+        if (error.serverError) {
+          console.error(`${error.serverError}`);
+          toast.error(`Server Error: Failed to create ${input.weekday}`);
+        }
+        if (error.validationErrors)
+          toast.error(`Validation errors: ${error.validationErrors}`);
+      },
+    },
+  );
+
+  const isLoading = status === "executing";
 
   function handleValidSubmit(
     data: z.infer<typeof zodInsertGroupScheduleSchema>,
   ) {
-    alert(`${JSON.stringify(data)}`);
     console.log(data);
+    createNewSchedule(data);
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleValidSubmit)}>
-        <FormItem>
-          <FormLabel htmlFor="groupId">Group Id</FormLabel>
-          <FormControl>
-            <Input
-              {...form.register("groupId")}
-              type="text"
-              id="groupId"
-              name="groupId"
-            />
-          </FormControl>
-        </FormItem>
-        <FormItem>
-          <FormLabel htmlFor="startTime">Start Time</FormLabel>
-          <FormControl>
-            <Input
-              {...form.register("startTime")}
-              type="text"
-              id="startTime"
-              name="startTime"
-            />
-          </FormControl>
-        </FormItem>
-        <FormItem>
-          <FormLabel htmlFor="endTime">End Time</FormLabel>
-          <FormControl>
-            <Input
-              {...form.register("endTime")}
-              type="text"
-              id="endTime"
-              name="endTime"
-            />
-          </FormControl>
-        </FormItem>
-        <FormItem>
-          <FormLabel htmlFor="weekday">Weekday</FormLabel>
-          <FormControl>
-            <Input
-              {...form.register("weekday")}
-              type="text"
-              id="weekday"
+    <>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleValidSubmit)}>
+          <FormField
+            control={form.control}
+            name="groupId"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="hidden" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <div className="grid grid-cols-3 gap-4">
+            <FormField
+              control={form.control}
               name="weekday"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor="weekday">Weekday</FormLabel>
+                  <FormControl>
+                    <Input type="text" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </FormControl>
-        </FormItem>
-        <FormItem>
-          <FormLabel htmlFor="active">Active</FormLabel>
-          <FormControl>
-            <Input
-              {...form.register("active")}
-              type="text"
-              id="active"
-              name="active"
+            <FormField
+              control={form.control}
+              name="startTime"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor="startTime">Start Time</FormLabel>
+                  <FormControl>
+                    <Input type="time" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </FormControl>
-        </FormItem>
-        <FormItem>
-          <FormLabel htmlFor="description">Description</FormLabel>
-          <FormControl>
-            <Textarea
-              {...form.register("description")}
-              id="description"
-              name="description"
+            <FormField
+              control={form.control}
+              name="endTime"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor="endTime">End Time</FormLabel>
+                  <FormControl>
+                    <Input type="time" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </FormControl>
-        </FormItem>
-        <FormItem>
-          <Button type="submit" disabled={isLoading}>
-            Submit
+          </div>
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor="description">Description</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Group description..."
+                    {...field}
+                    value={field.value ?? ""}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button className="w-full" disabled={isLoading} type="submit">
+            {isLoading ? "Saving..." : "Save"}
           </Button>
-        </FormItem>
-      </form>
-    </Form>
+        </form>
+      </Form>
+    </>
   );
 }
 
