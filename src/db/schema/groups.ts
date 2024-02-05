@@ -1,8 +1,9 @@
 import { createPublicId } from "@/lib/create-public-id";
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { boolean, datetime, text, varchar } from "drizzle-orm/mysql-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { string, z } from "zod";
+import { groupScheduleTable } from ".";
 import { prefixedMySqlTable } from "../prefixedMySqlTable";
 
 // drizzle schema for groups table
@@ -17,6 +18,10 @@ export const groupsTable = prefixedMySqlTable("groups", {
     sql`CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`,
   ),
 });
+
+export const groupsTableRelations = relations(groupsTable, ({ many }) => ({
+  posts: many(groupScheduleTable),
+}));
 
 // zod insert schema for groups table
 export const zodInsertGroupSchema = createInsertSchema(groupsTable, {
