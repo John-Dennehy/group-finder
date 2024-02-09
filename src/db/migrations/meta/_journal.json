@@ -1,1 +1,13 @@
-{"version":"5","dialect":"mysql","entries":[{"idx":0,"version":"5","when":1706459310316,"tag":"0000_dear_payback","breakpoints":true},{"idx":1,"version":"5","when":1706570487856,"tag":"0001_steep_reptil","breakpoints":true},{"idx":2,"version":"5","when":1706880254487,"tag":"0002_wet_malice","breakpoints":true},{"idx":3,"version":"5","when":1707083728890,"tag":"0003_adorable_micromacro","breakpoints":true}]}
+{
+  "version": "5",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1707479454513,
+      "tag": "0000_glorious_arclight",
+      "breakpoints": true
+    }
+  ]
+}
