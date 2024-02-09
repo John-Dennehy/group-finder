@@ -1,2 +1,2 @@
 export * from "./groups";
-export * from "./group-schedule";
+export * from "./group-schedules";

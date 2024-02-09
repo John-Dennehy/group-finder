@@ -9,7 +9,7 @@ import { prefixedMySqlTable } from "../prefixedMySqlTable";
 import { groupsTable } from "./groups";
 
 // drizzle schema for group-schedule table
-export const groupScheduleTable = prefixedMySqlTable("group_schedule", {
+export const groupSchedulesTable = prefixedMySqlTable("group_schedules", {
   id: int("int").autoincrement().primaryKey(),
   groupId: varchar("group_id", { length: 7 }).notNull(), //.references(() => groupsTable.id),
   weekday: mysqlEnum("weekday", weekdays).notNull(),
@@ -25,10 +25,10 @@ export const groupScheduleTable = prefixedMySqlTable("group_schedule", {
 
 // relations (many to one)
 export const groupOpenHoursRelations = relations(
-  groupScheduleTable,
+  groupSchedulesTable,
   ({ one }) => ({
     group: one(groupsTable, {
-      fields: [groupScheduleTable.groupId],
+      fields: [groupSchedulesTable.groupId],
       references: [groupsTable.id],
     }),
   }),
@@ -36,7 +36,7 @@ export const groupOpenHoursRelations = relations(
 
 // zod insert schema for group-schedule table
 export const zodInsertGroupScheduleSchema = createInsertSchema(
-  groupScheduleTable,
+  groupSchedulesTable,
   {
     startTime: z.string().regex(timeRegexp),
   },
@@ -44,10 +44,10 @@ export const zodInsertGroupScheduleSchema = createInsertSchema(
 
 // zod select schema for group-schedule table
 export const zodSelectGroupScheduleSchema =
-  createSelectSchema(groupScheduleTable);
+  createSelectSchema(groupSchedulesTable);
 
 // typescript types for groups table
-export type GroupSchedule = typeof groupScheduleTable.$inferSelect;
-export type NewGroupSchedule = typeof groupScheduleTable.$inferInsert;
+export type GroupSchedule = typeof groupSchedulesTable.$inferSelect;
+export type NewGroupSchedule = typeof groupSchedulesTable.$inferInsert;
 export type UpdateGroupSchedule = Required<Pick<GroupSchedule, "id">> &
   Partial<Omit<GroupSchedule, "id">>;
