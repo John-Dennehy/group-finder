@@ -21,6 +21,8 @@ export const groupsTable = prefixedMySqlTable("groups", {
 
 export const groupsTableRelations = relations(groupsTable, ({ many }) => ({
   schedule: many(groupSchedulesTable),
+  locations: many(groupSchedulesTable),
+  contactDetails: many(groupSchedulesTable),
 }));
 
 // zod insert schema for groups table
