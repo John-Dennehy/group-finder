@@ -24,7 +24,7 @@ export const groupSchedulesTable = prefixedMySqlTable("group_schedules", {
 });
 
 // relations (many to one)
-export const groupOpenHoursRelations = relations(
+export const groupSchedulesRelations = relations(
   groupSchedulesTable,
   ({ one }) => ({
     group: one(groupsTable, {
