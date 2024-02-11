@@ -1,10 +1,15 @@
+import { prefixedMySqlTable } from "@/db/prefixedMySqlTable";
+import { groupAttendeeTypesTable } from "@/db/schema";
 import { createPublicId } from "@/lib/create-public-id";
 import { relations, sql } from "drizzle-orm";
 import { boolean, datetime, text, varchar } from "drizzle-orm/mysql-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-import { string, z } from "zod";
-import { groupSchedulesTable } from ".";
-import { prefixedMySqlTable } from "../prefixedMySqlTable";
+import { z } from "zod";
+import {
+  groupContactDetailsTable,
+  groupLocationsTable,
+  groupSchedulesTable,
+} from ".";
 
 // drizzle schema for groups table
 export const groupsTable = prefixedMySqlTable("groups", {
@@ -21,8 +26,9 @@ export const groupsTable = prefixedMySqlTable("groups", {
 
 export const groupsTableRelations = relations(groupsTable, ({ many }) => ({
   schedule: many(groupSchedulesTable),
-  locations: many(groupSchedulesTable),
-  contactDetails: many(groupSchedulesTable),
+  locations: many(groupLocationsTable),
+  contactDetails: many(groupContactDetailsTable),
+  attendeeTypes: many(groupAttendeeTypesTable),
 }));
 
 // zod insert schema for groups table

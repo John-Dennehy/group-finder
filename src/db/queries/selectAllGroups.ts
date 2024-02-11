@@ -7,6 +7,14 @@ export async function selectAllGroups() {
     return await db.query.groupsTable.findMany({
       with: {
         schedule: true,
+        locations: true,
+        contactDetails: true,
+        attendeeTypes: {
+          with: {
+            group: true,
+            attendeeType: true,
+          },
+        },
       },
     });
   } catch (error: unknown) {

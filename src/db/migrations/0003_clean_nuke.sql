@@ -1,0 +1,1 @@
+ALTER TABLE `gf_group_attendee_types` ADD `filter_type` enum('include','exclude') DEFAULT 'include' NOT NULL;
