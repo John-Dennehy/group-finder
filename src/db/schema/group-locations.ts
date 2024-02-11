@@ -15,7 +15,7 @@ export const groupLocationsTable = prefixedMySqlTable("group_locations", {
   postCode: varchar("post_code", { length: 8 }).notNull(),
   placeId: varchar("place_id", { length: 255 }),
   description: varchar("description", { length: 255 }),
-  createdAt: datetime("created_at").default(sql`CURRENT_TIMESTAMP`),
+  createdAt: datetime("created_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
   updatedAt: datetime("updated_at").default(
     sql`CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`,
   ),

@@ -21,7 +21,7 @@ export const groupContactDetailsTable = prefixedMySqlTable(
     groupId: varchar("group_id", { length: 7 }).notNull(), //.references(() => groupsTable.id),
     contactType: mysqlEnum("contact_type", contactTypes).notNull(),
     contact: varchar("contact", { length: 255 }).notNull(),
-    createdAt: datetime("created_at").default(sql`CURRENT_TIMESTAMP`),
+    createdAt: datetime("created_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
     updatedAt: datetime("updated_at").default(
       sql`CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`,
     ),

@@ -19,7 +19,7 @@ export const groupAttendeeTypesTable = prefixedMySqlTable(
     filterType: mysqlEnum("filter_type", filterType)
       .default("include")
       .notNull(),
-    createdAt: datetime("created_at").default(sql`CURRENT_TIMESTAMP`),
+    createdAt: datetime("created_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
   },
   // define a composite primary key  using the groupId and attendeeType
   (table) => {

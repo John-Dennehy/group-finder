@@ -8,7 +8,7 @@ export const attendeeTypesTable = prefixedMySqlTable("attendee_types", {
   name: varchar("name", { length: 255 }).notNull(),
   description: varchar("description", { length: 255 }),
   active: boolean("active").default(true).notNull(),
-  createdAt: datetime("created_at").default(sql`CURRENT_TIMESTAMP`),
+  createdAt: datetime("created_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
   updatedAt: datetime("updated_at").default(
     sql`CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`,
   ),
