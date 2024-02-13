@@ -1,1 +1,0 @@
-ALTER TABLE `gf_attendee_types` ADD `active` boolean DEFAULT true NOT NULL;

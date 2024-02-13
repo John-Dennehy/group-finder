@@ -6,7 +6,7 @@ import { groupsTable } from "./groups";
 
 // drizzle schema for group-locations table
 export const groupLocationsTable = prefixedMySqlTable("group_locations", {
-  id: int("int").autoincrement().primaryKey(),
+  id: int("id").autoincrement().primaryKey(),
   groupId: varchar("group_id", { length: 7 }).notNull(), //.references(() => groupsTable.id),
   addressLine1: varchar("address_line_1", { length: 255 }).notNull(),
   addressLine2: varchar("address_line_2", { length: 255 }),

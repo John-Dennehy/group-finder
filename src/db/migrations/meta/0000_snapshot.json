@@ -1,14 +1,182 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "17600547-6640-4e2f-9c58-456c400a7bae",
+  "id": "3f56206d-e56e-4818-bca9-0a3ebc1c623f",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "gf_attendee_types": {
+      "name": "gf_attendee_types",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "active": {
+          "name": "active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "gf_attendee_types_id": {
+          "name": "gf_attendee_types_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "gf_group_attendee_types": {
+      "name": "gf_group_attendee_types",
+      "columns": {
+        "group_id": {
+          "name": "group_id",
+          "type": "varchar(7)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "attendee_type_id": {
+          "name": "attendee_type_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "filter_type": {
+          "name": "filter_type",
+          "type": "enum('include','exclude')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'include'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "gf_group_attendee_types_group_id_attendee_type_id_pk": {
+          "name": "gf_group_attendee_types_group_id_attendee_type_id_pk",
+          "columns": [
+            "group_id",
+            "attendee_type_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "gf_group_contact_details": {
+      "name": "gf_group_contact_details",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "group_id": {
+          "name": "group_id",
+          "type": "varchar(7)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "contact_type": {
+          "name": "contact_type",
+          "type": "enum('email','phone','website','facebook','twitter','instagram')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "contact": {
+          "name": "contact",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "gf_group_contact_details_id": {
+          "name": "gf_group_contact_details_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
     "gf_group_locations": {
       "name": "gf_group_locations",
       "columns": {
-        "int": {
-          "name": "int",
+        "id": {
+          "name": "id",
           "type": "int",
           "primaryKey": false,
           "notNull": true,
@@ -74,7 +242,7 @@
           "name": "created_at",
           "type": "datetime",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false,
           "default": "CURRENT_TIMESTAMP"
         },
@@ -90,10 +258,10 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {
-        "gf_group_locations_int": {
-          "name": "gf_group_locations_int",
+        "gf_group_locations_id": {
+          "name": "gf_group_locations_id",
           "columns": [
-            "int"
+            "id"
           ]
         }
       },
@@ -102,8 +270,8 @@
     "gf_group_schedules": {
       "name": "gf_group_schedules",
       "columns": {
-        "int": {
-          "name": "int",
+        "id": {
+          "name": "id",
           "type": "int",
           "primaryKey": false,
           "notNull": true,
@@ -172,10 +340,10 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {
-        "gf_group_schedules_int": {
-          "name": "gf_group_schedules_int",
+        "gf_group_schedules_id": {
+          "name": "gf_group_schedules_id",
           "columns": [
-            "int"
+            "id"
           ]
         }
       },

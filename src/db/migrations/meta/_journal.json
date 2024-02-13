@@ -5,43 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1707479454513,
-      "tag": "0000_glorious_arclight",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1707480235848,
-      "tag": "0001_last_dust",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1707489510323,
-      "tag": "0002_common_rocket_raccoon",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1707490907464,
-      "tag": "0003_clean_nuke",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1707492107566,
-      "tag": "0004_crazy_sunset_bain",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1707657810413,
-      "tag": "0005_normal_energizer",
+      "when": 1707668187055,
+      "tag": "0000_same_warpath",
       "breakpoints": true
     }
   ]

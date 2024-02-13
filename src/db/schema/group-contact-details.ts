@@ -17,7 +17,7 @@ const contactTypes = [
 export const groupContactDetailsTable = prefixedMySqlTable(
   "group_contact_details",
   {
-    id: int("int").autoincrement().primaryKey(),
+    id: int("id").autoincrement().primaryKey(),
     groupId: varchar("group_id", { length: 7 }).notNull(), //.references(() => groupsTable.id),
     contactType: mysqlEnum("contact_type", contactTypes).notNull(),
     contact: varchar("contact", { length: 255 }).notNull(),
