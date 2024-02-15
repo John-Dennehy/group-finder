@@ -4,11 +4,14 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Group } from "@/db/schema/groups";
+import { BaseGroup, groupsTable } from "@/db/schema";
+import { cn } from "@/lib/className";
+import { Weekday } from "@/lib/date-time";
+import { Badge } from "../ui/badge";
 import { AttendeeTypesList } from "./attendee-types-list";
 
 type GroupCardProps = {
-  group: Group;
+  group: BaseGroup;
 };
 
 export type AttendeeType = {
@@ -29,19 +32,6 @@ const defaultAttendeeTypes: AttendeeType[] = [
 
 export function GroupCard({ group }: GroupCardProps) {
   // TODO: Data not yet available
-  const currentAddress =
-    "Staines Congregational Church Hall, Stainash Crescent, Staines TW18 1AY";
-
-  const contactDetails = {
-    facebook: "https://www.facebook.com/NCTSAE",
-    instagram: "https://www.instagram.com/nct_staines_ashford_egham/",
-    twitter: "https://twitter.com/NCT_SAE",
-    facebookGroup: "https://www.facebook.com/groups/1234567890",
-    website:
-      "https://www.nct.org.uk/local-activities-meet-ups/region-south-east-england/staines-ashford-egham-surrounding-areas",
-    email: "stainesashfordegham@nct.org.uk",
-    phone: "01234 567890",
-  };
 
   const attendeeTypes = defaultAttendeeTypes;
 
@@ -58,9 +48,10 @@ export function GroupCard({ group }: GroupCardProps) {
         </h3>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="flex flex-col gap-2">
         <p>{group.description}</p>
         <AttendeeTypesList attendeeTypes={attendeeTypes} />
+        {/* <GroupSchedule schedule={group.schedule} /> */}
       </CardContent>
 
       <CardFooter>
@@ -71,3 +62,70 @@ export function GroupCard({ group }: GroupCardProps) {
     </Card>
   );
 }
+
+function GroupSchedule({ schedule }) {
+  const mondayData = schedule.filter((item) => item.weekday === "Mon");
+  const tuesdayData = schedule.filter((item) => item.weekday === "Tue");
+  const wednesdayData = schedule.filter((item) => item.weekday === "Wed");
+  const thursdayData = schedule.filter((item) => item.weekday === "Thu");
+  const fridayData = schedule.filter((item) => item.weekday === "Fri");
+  const saturdayData = schedule.filter((item) => item.weekday === "Sat");
+  const sundayData = schedule.filter((item) => item.weekday === "Sun");
+
+  return (
+    <div>
+      <ul className="flex flex-wrap gap-2">
+        <WeekdaySchedule weekday="Mon" data={mondayData} />
+        <WeekdaySchedule weekday="Tue" data={tuesdayData} />
+        <WeekdaySchedule weekday="Wed" data={wednesdayData} />
+        <WeekdaySchedule weekday="Thu" data={thursdayData} />
+        <WeekdaySchedule weekday="Fri" data={fridayData} />
+        <WeekdaySchedule weekday="Sat" data={saturdayData} />
+        <WeekdaySchedule weekday="Sun" data={sundayData} />
+      </ul>
+    </div>
+  );
+}
+
+type WeekdayScheduleProps = {
+  weekday: Weekday;
+  data: WeekdayScheduleData[];
+};
+
+type WeekdayScheduleData = {
+  weekday: string;
+  id: string;
+  startTime: string;
+  endTime: string;
+  description: string;
+  active: boolean;
+};
+
+function WeekdaySchedule({ weekday, data }: WeekdayScheduleProps) {
+  if (data.length === 0) return null;
+
+  return (
+    <li className="flex flex-col">
+      <h3 className="text-sm font-semibold">{weekday}</h3>
+      <ul>
+        {data.map((item) => (
+          <li
+            key={item.id}
+            className={cn(
+              "flex flex-row gap-2",
+              item.active ? "" : "text-gray-500",
+            )}
+          >
+            <p className="whitespace-nowrap text-sm">
+              {`${item.startTime} to ${item.endTime}`}
+            </p>
+            <Badge variant="outline" className="text-xs whitespace-nowrap">
+              {item.description}
+            </Badge>
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+}
+

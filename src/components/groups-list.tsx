@@ -1,9 +1,9 @@
 import { GroupCard } from "@/components/group-card/group-card";
-import { Group } from "@/db/schema/groups";
+import { BaseGroup } from "@/db/schema/groups";
 import Link from "next/link";
 
 type GroupListProps = {
-  groups: Group[];
+  groups: BaseGroup[];
 };
 
 export function GroupList({ groups }: GroupListProps) {

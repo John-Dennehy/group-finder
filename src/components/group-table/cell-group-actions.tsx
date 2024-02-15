@@ -7,13 +7,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Group } from "@/db/schema/groups";
+import { BaseGroup } from "@/db/schema/groups";
 import { EyeOpenIcon, Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 
 type GroupActionsProps = {
-  group: Group;
+  group: BaseGroup;
 };
 
 export function GroupActions({ group }: GroupActionsProps) {

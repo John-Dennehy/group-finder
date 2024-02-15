@@ -1,11 +1,11 @@
 "use client";
-import { Group } from "@/db/schema";
+import { BaseGroup } from "@/db/schema";
 import { updateGroupAction } from "@/server/actions/update-group-action";
 import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
 import { useAction } from "next-safe-action/hooks";
 
 export type ActiveCellProps = {
-  group: Group;
+  group: BaseGroup;
 };
 
 export function ActiveCell({ group }: ActiveCellProps) {

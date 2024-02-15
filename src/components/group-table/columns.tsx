@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Group } from "@/db/schema/groups";
+import { BaseGroup } from "@/db/schema/groups";
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
 import { ActiveCell } from "../data-table/cell-active";
@@ -9,7 +9,7 @@ import { CellDateTime } from "../data-table/cell-date-time";
 import { ColumnHeader } from "../data-table/column-header";
 import { GroupActions } from "./cell-group-actions";
 
-export const columns: ColumnDef<Group>[] = [
+export const columns: ColumnDef<BaseGroup>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => <ColumnHeader column={column} />,

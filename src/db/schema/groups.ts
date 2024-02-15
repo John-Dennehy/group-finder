@@ -47,9 +47,9 @@ export const zodUpdateGroupSchema = zodInsertGroupSchema.partial({ id: true });
 export const zodSelectGroupSchema = createSelectSchema(groupsTable);
 
 // typescript types for groups table
-export type Group = typeof groupsTable.$inferSelect;
+export type BaseGroup = typeof groupsTable.$inferSelect;
 export type NewGroup = typeof groupsTable.$inferInsert;
-export type UpdateGroup = Required<Pick<Group, "id">> &
-  Partial<Omit<Group, "id">>;
+export type UpdateGroup = Required<Pick<BaseGroup, "id">> &
+  Partial<Omit<BaseGroup, "id">>;
 
 export default groupsTable;
