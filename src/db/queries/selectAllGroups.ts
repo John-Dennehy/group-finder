@@ -3,24 +3,33 @@
 import { db } from "@/db";
 
 export async function selectAllGroups() {
-  try {
-    return await db.query.groupsTable.findMany({
+const data = await db.query.groupsTable.findMany({
+  columns: {
+    id: true,
+    name: true,
+    description: true,
+    active: true,
+  },
+  with: {
+    schedule: true,
+    locations: true,
+    contactDetails: true,
+    attendeeTypes: {
+      columns: {
+        filterType: true,
+      },
       with: {
-        schedule: true,
-        locations: true,
-        contactDetails: true,
-        attendeeTypes: {
-          with: {
-            group: true,
-            attendeeType: true,
+        attendeeType: {
+          columns: {
+            id: true,
+            name: true,
+            description: true,
           },
         },
       },
-    });
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      throw new Error(error.message);
-    }
-    throw new Error("Unknown error fetching groups");
-  }
+    },
+  },
+});
+
+return data;
 }
