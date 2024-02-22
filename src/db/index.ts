@@ -1,2 +1,2 @@
-export * from "./connection";
-export { default as db } from "./connection";
+export * from "./client";
+export { default as db } from "./client";
